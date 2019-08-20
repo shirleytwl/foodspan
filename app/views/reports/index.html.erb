@@ -1,3 +1,9 @@
+<%= form_with url: reports_path, method: :get, skip_enforcing_utf8: true do %>
+<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();") %>
+<%= select_tag(:wastage, options_for_select([['Wastage Ascending', 'asc'],['Wastage Descending','desc']], :selected => params[:wastage]), :onchange => "this.form.submit();") %>
+<% end %>
+
+
 <% @details.each do |detail| %>
 	<h3><%= detail[:tag_name] %></h3>
 	<div class="progress">

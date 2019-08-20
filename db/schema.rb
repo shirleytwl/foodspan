@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_032150) do
+ActiveRecord::Schema.define(version: 2019_08_20_034810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.date "expiry_date"
+    t.integer "quantity"
+    t.string "unit"
+    t.integer "quantity_left"
+    t.boolean "removed", default: false
+    t.boolean "bought", default: false
+    t.boolean "stored", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "purchase_date"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

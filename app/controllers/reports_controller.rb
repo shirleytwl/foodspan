@@ -21,10 +21,6 @@ class ReportsController < ApplicationController
         @details.push(data)
       end
     end
-
-    p'#######'
-    p @details
-    p'#######'
   end
 
   def show

@@ -1,32 +1,7 @@
-<h1> <%= @number %></h1>
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Tags</th>
-      <th scope="col">Food Consumed</th>
-			<th scope="col">Food Wasted</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<% @details.each do |detail| %>
+	<h3><%= detail[:tag_name] %></h3>
+	<div class="progress">
+ 		<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
+  	<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+<% end %>

@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 gem 'bootstrap_tokenfield_rails', '~> 0.12.1'
 
 group :development, :test do

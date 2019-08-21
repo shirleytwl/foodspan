@@ -1,0 +1,20 @@
+<h1>Add Ingredient</h1>
+
+<%= form_with scope: :ingredient, url: groceries_path, local: true do |form| %>
+
+	<p>
+		<%= form.label :name %><br>
+		<%= form.text_area :name %>
+	</p>
+
+	<p>
+		<%= form.label :quantity %>
+		<%= form.number_field :quantity %>
+
+		<%= form.label :unit %>
+		<%= form.text_area :unit %>
+	</p>
+
+		<%= form.submit %>
+	</p>
+<% end %>

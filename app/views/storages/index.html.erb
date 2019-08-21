@@ -1,1 +1,54 @@
-<h2>Storage</h2>
+<div class="row">
+	<div class="col-10">
+		<h2>Storage</h2>
+	</div>
+	<div class="col-2">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#storage-add">Add New</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<table id="storage-table" class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Ingredient</th>
+		      <th scope="col">Qty</th>
+		      <th scope="col">Expiring in</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% 	@ingredients.each do |ingredient|  %>
+		  		<%
+		    		start_date = DateTime.now
+		    		end_date = ingredient.expiry_date
+		    		days_remaining = (end_date - start_date).to_i
+		    	%>
+			    <tr class="storage-item" data-ingredient=<%= ingredient.id %>>
+			      <th scope="row"><%= ingredient.name%></th>
+			      <td><%= ingredient.quantity_left%> <%= ingredient.unit%></td>
+			      <td>
+			      	<% if days_remaining >= 0 %>
+			      		<span class="fresh"><%= days_remaining%></span>
+			      	<% else %>
+			      		<span class="expired"><%= days_remaining%></span>
+		      		<% end %>
+		      	</td>
+			    </tr>
+			  <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<%= render "application/storages/add-modal" %>
+<%= render "application/storages/edit-modal" %>
+
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path) %>
+  </li>
+<% end %>

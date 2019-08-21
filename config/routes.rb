@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   delete '/grocery/:id' => 'groceries#destroy', as: 'delete_groceries'
 
   get '/storage' => 'storages#index', as: 'storages'
-  
+  post '/storage' => 'storages#create'
+  get '/storage/:id/edit' => 'storages#edit', as: 'edit_storages'
+  patch '/storage/:id/edit' => 'storages#update', as: 'update_storages'
+  delete '/storage/:id' => 'storages#destroy', as: 'delete_storages'
+
   get '/suggestion' => 'suggestions#index', as: 'suggestions'
 
 end

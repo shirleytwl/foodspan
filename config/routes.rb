@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails. /routing.html
   get '/reports' => 'reports#index', as: 'reports'
+  get '/dashboards' => 'dashboards#index', as: 'dashboards'
   
   get '/grocery' => 'groceries#index', as: 'groceries'
   get '/grocery/new' => 'groceries#new', as: 'new_groceries'

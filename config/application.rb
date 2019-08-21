@@ -12,6 +12,7 @@ module Foodspan
     config.load_defaults 5.2
     config.assets.precompile += %w(storage.js)
     config.assets.precompile += %w(grocery.js)
+    config.assets.precompile += %w(navigation.js)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

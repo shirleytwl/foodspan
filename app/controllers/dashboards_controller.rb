@@ -20,6 +20,10 @@ class DashboardsController < ApplicationController
 
   end
 
+  def home
+
+  end
+
   ## search Storage
   private def storageDashboard (ingredients)
     ingredients.where(stored: true).where(removed: false).where(user: current_user).order(expiry_date: :asc)
@@ -82,6 +86,7 @@ class DashboardsController < ApplicationController
           end
         end
       end
+      puts prep
       details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
       details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
 

@@ -36,8 +36,8 @@
 		      		<% end %>
 		      	</td>
 		      	<td>
-		      		<button class="storage-edit-btn btn btn-primary" data-ingredient=<%= ingredient.id %>>edit</button>
-			  			<%= link_to 'Delete', delete_storages_path(ingredient),:class=>"btn btn-primary", :method =>:delete %>
+		      		<a class="storage-edit-btn" data-ingredient=<%= ingredient.id %>><i class="fa fa-pencil" aria-hidden="true"></i></a>
+			  			<%= link_to raw('<i class="fa fa-minus-circle" aria-hidden="true"></i>'), delete_storages_path(ingredient),:class=>"storage-delete-btn", :method =>:delete %>
 		      	</td>
 
 			    </tr>

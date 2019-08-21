@@ -1,0 +1,67 @@
+body {
+	font-family: 'Quicksand', sans-serif;
+}
+
+.content {
+	margin-top: 4rem;
+}
+
+
+.navbar {
+	background-color: #eee;
+
+	#navbarNav {
+    justify-content: end;
+	}
+	.navbar-nav.guest-nav {
+    flex-direction: row;
+
+    .nav-item {
+    	margin-left: 1rem;
+    }
+	}
+
+}
+
+#collapsibleNavbar {
+  height: 100vh;
+  width: 320px;
+  position: fixed;
+  left: auto;
+  right: -320px;
+  top: 0;
+  display: block!important;
+  background: #fff;
+  padding: 8px 20px;
+  z-index: 1000;
+  transition: .5s;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+}
+#collapsibleNavbar.show {
+	right:0;
+}
+
+
+#collapsibleNavbar ul li {
+  padding:10px;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-overlay {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 999;
+	display: none;
+}
+
+.storage-edit-btn i {
+	color: #69814D;
+	margin-right: 1rem;
+}
+.storage-delete-btn i {
+	color: #9B5756;
+}

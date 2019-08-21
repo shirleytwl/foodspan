@@ -11,6 +11,9 @@ class GroceriesController < ApplicationController
 
   def edit
     @ingredient = Ingredient.find(params[:id])
+    respond_to_do |format|
+      format.html { render partial: 'grocery-edit-form', locals: {ingredient: @ingredient}}
+    end
   end
 
   def create

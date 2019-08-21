@@ -36,6 +36,22 @@ class GroceriesController < ApplicationController
     redirect_to groceries_path
   end
 
+  def add_groceries_storages
+    puts "editing"
+  end
+
+  def updatebought
+    @ingredient = Ingredient.find(params[:id])
+
+    if @ingredient[:bought]
+      @ingredient[:bought] = false
+    else
+      @ingredient[:bought] = true
+    end
+
+    @ingredient.save
+  end
+
   private
     def ingredient_params
       params.require(:ingredient).permit(:name, :quantity, :unit)

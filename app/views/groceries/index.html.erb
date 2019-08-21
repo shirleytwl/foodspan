@@ -22,7 +22,16 @@
 					<tr class="grocery-item">
 			  		<td><%= ingredient.name %></td>
 			  		<td><%= ingredient.quantity %></td>
-			  		<td><%= ingredient.bought %></td>
+			  		<td>
+			  			<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
+			  			<% if ingredient.bought %>
+			  				<%= form.check_box :bought, class: "check_box", :checked => true %>
+			  			<% else %>
+			  				<%= form.check_box :bought, class: "check_box"%>
+			  				<% end %>
+
+			  			<% end %>
+			  		</td>
 		  			<td><button data-ingredient="<%= ingredient.id%>" class="grocery-edit-btn btn btn-primary">Edit</button></td>
 		  			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
 	  			</tr>
@@ -33,6 +42,9 @@
 </div>
 <%= render "application/grocery-add-modal" %>
 <%= render "application/grocery-edit-modal" %>
+<%= render "application/grocery-storage-add-modal" %>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_groceries_storages">Add to Storage</button>
 
 <% if user_signed_in? %>
   <li>
@@ -43,3 +55,5 @@
   <%= link_to('Login', new_user_session_path) %>
   </li>
 <% end %>
+
+<%= javascript_include_tag "grocery" %>

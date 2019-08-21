@@ -1,5 +1,4 @@
 window.onload = function() {
-    console.log("loaded");
     let addStoragePurchasedDate = $('#add-storage-purchased-date');
     let addStorageExpiryDate = $('#add-storage-expiry-date');
     let addStorageExpiryDays = $('#add-storage-expiry-days');
@@ -51,6 +50,8 @@ window.onload = function() {
 
       })
     });
+
+    $("#add-storage-tags").tokenfield();
 };
 
 function calculateExpiryFromDate (expireDate, displayResult){

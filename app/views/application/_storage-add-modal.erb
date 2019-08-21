@@ -38,6 +38,10 @@
 				  	<label for="name">Expire in (Days)</label>
 				    <input type="number" id="add-storage-expiry-days" class="form-control">
 				  </div>
+					<div class="form-group">
+						<label for="tags">Ingredient Tags</label>
+						<input name="tag" type="text" id="add-storage-tags" class="tokenize">
+					</div>
         	<%= form.submit :class=>'btn btn-primary' %>
 				<% end %>
       </div>

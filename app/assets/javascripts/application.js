@@ -16,5 +16,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require bootstrap-tokenfield
 //= require Chart.bundle
 //= require chartkick

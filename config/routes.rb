@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/storage' => 'storages#index', as: 'storages'
   post '/storage' => 'storages#create'
+  get '/storage/gettags' => 'storages#gettags'
   get '/storage/:id/edit' => 'storages#edit', as: 'edit_storages'
   patch '/storage/:id/edit' => 'storages#update', as: 'update_storages'
   get '/storage/:id/editqty' => 'storages#editqty', as: 'edit_storages_qty'

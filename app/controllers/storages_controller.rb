@@ -1,7 +1,12 @@
 class StoragesController < ApplicationController
   def index
     @ingredients = Ingredient.where(stored: true, removed:false, user_id: current_user).order(expiry_date: :asc)
-    @tags = Tags.all
+    @tags = Tag.all
+
+    respond_to do |format|
+      format.html { render 'index' , locals: {ingredient: @ingredient}}
+      format.json { render json: @tags }
+    end
   end
 
   def create

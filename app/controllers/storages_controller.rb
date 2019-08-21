@@ -1,6 +1,6 @@
 class StoragesController < ApplicationController
   def index
-    @ingredients = Ingredient.where(stored: true, user_id: current_user).order(expiry_date: :asc)
+    @ingredients = Ingredient.where(stored: true, removed:false, user_id: current_user).order(expiry_date: :asc)
   end
   def create
     @ingredient = Ingredient.new(ingredient_params)
@@ -14,20 +14,42 @@ class StoragesController < ApplicationController
 
   def edit
     @ingredient = Ingredient.find(params[:id])
+    respond_to do |format|
+      format.html { render partial: 'storage-edit-form' , locals: {ingredient: @ingredient}}
+    end
   end
 
   def update
-    p "+++++++++++++++ASFSDEFDFDFE+++++++++++++++"
     @ingredient = Ingredient.find(params[:id])
     @ingredient.update(ingredient_params)
     if (@ingredient.quantity_left > @ingredient.quantity)
       @ingredient.quantity_left = @ingredient.quantity
-      @ingredient.save
     end
     redirect_to storages_path
   end
+
+  def destroy
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.removed = true
+    @ingredient.save
+    redirect_to storages_path
+  end
+
+  def editqty
+    @ingredient = Ingredient.find(params[:id])
+    respond_to do |format|
+      format.html { render partial: 'storage-edit-qty-form' , locals: {ingredient: @ingredient}}
+    end
+  end
+
+  def updateqty
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.update(ingredient_params)
+    redirect_to storages_path
+  end
+
   private
     def ingredient_params
-      params.require(:ingredient).permit(:name, :quantity, :unit, :purchase_date, :expiry_date)
+      params.require(:ingredient).permit(:name, :quantity, :unit, :purchase_date, :expiry_date,:quantity_left)
     end
 end

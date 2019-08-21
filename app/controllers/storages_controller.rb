@@ -14,10 +14,12 @@ class StoragesController < ApplicationController
 
   def edit
     @ingredient = Ingredient.find(params[:id])
+    respond_to do |format|
+      format.html { render partial: 'storage-edit-form' , locals: {ingredient: @ingredient}}
+    end
   end
 
   def update
-    p "+++++++++++++++ASFSDEFDFDFE+++++++++++++++"
     @ingredient = Ingredient.find(params[:id])
     @ingredient.update(ingredient_params)
     if (@ingredient.quantity_left > @ingredient.quantity)
@@ -26,6 +28,14 @@ class StoragesController < ApplicationController
     end
     redirect_to storages_path
   end
+
+  def editqty
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def updateqty
+  end
+
   private
     def ingredient_params
       params.require(:ingredient).permit(:name, :quantity, :unit, :purchase_date, :expiry_date)

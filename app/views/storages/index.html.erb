@@ -12,14 +12,14 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">Ingredient</th>
-		      <th scope="col">Qty</th>
+		      <th scope="col">Qty Left</th>
 		      <th scope="col">Expiring in</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	<% 	@ingredients.each do |ingredient|  %>
 		  		<%
-		    		start_date = DateTime.now
+		    		start_date = Date.today
 		    		end_date = ingredient.expiry_date
 		    		days_remaining = (end_date - start_date).to_i
 		    	%>
@@ -40,8 +40,9 @@
 	</div>
 </div>
 
-<%= render "application/storages/add-modal" %>
-<%= render "application/storages/edit-modal" %>
+<%= render "application/storage-add-modal" %>
+<%= render "application/storage-edit-modal" %>
+<%= render "application/storage-edit-qty-modal" %>
 
 <% if user_signed_in? %>
   <li>

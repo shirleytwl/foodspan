@@ -1,0 +1,26 @@
+<h1>Grocery List</h1>
+
+<%= link_to 'Add ingredient', new_groceries_path %>
+
+<table>
+  <tr>
+    <th>Ingredient</th>
+    <th>Quantity</th>
+    <th>Bought</th>
+    <th></th>
+  </tr>
+
+  <% @ingredients.each do |ingredient| %>
+  	<tr>
+
+	  		<td><%= ingredient.name %></td>
+	  		<td><%= ingredient.quantity %></td>
+	  		<td><%= ingredient.bought %></td>
+  			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
+  			<td><%= link_to 'Edit', edit_groceries_path(ingredient) %></td>
+
+  	</tr>
+  <% end %>
+ </table>
+
+ <%= link_to 'Add to Storage', groceries_path %>

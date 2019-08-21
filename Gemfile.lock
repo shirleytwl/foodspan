@@ -70,7 +70,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    chartkick (3.2.1)
+    chartjs-ror (3.6.4)
+      rails (>= 3.1)
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
@@ -231,7 +232,7 @@ DEPENDENCIES
   bootstrap_tokenfield_rails (~> 0.12.1)
   byebug
   capybara (>= 2.15)
-  chartkick
+  chartjs-ror
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise

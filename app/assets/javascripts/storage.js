@@ -1,4 +1,5 @@
-window.onload = function() {
+// window.onload
+function loadstorage() {
     $('#storage-add').on('shown.bs.modal', function (e) {
         $('#storage-purchased-date').datepicker('update', new Date());
         $('#storage-expiry-date').datepicker('update', new Date());

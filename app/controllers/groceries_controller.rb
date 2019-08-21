@@ -11,6 +11,10 @@ class GroceriesController < ApplicationController
 
   def edit
     @ingredient = Ingredient.find(params[:id])
+
+    respond_to do |format|
+      format.html { render partial: 'grocery-edit-form', locals: {ingredient: @ingredient}}
+    end
   end
 
   def create
@@ -31,9 +35,9 @@ class GroceriesController < ApplicationController
     @ingredient.destroy
     redirect_to groceries_path
   end
-end
 
-private
-  def ingredient_params
-    params.require(:ingredient).permit(:name, :quantity, :unit)
-  end
+  private
+    def ingredient_params
+      params.require(:ingredient).permit(:name, :quantity, :unit)
+    end
+end

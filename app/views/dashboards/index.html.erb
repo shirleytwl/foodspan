@@ -1,0 +1,9 @@
+<div class='container'>
+<%= form_with url: dashboards_path, method: :get, skip_enforcing_utf8: true do %>
+	<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();") %>
+	<%= select_tag(:wastage, options_for_select([['Wastage Ascending', 'asc'],['Wastage Descending','desc']], :selected => params[:wastage]), :onchange => "this.form.submit();") %>
+	<% end %>
+
+
+<%= bar_chart @details, xmin: 0.0, xmax: 100.0, legend: 'top', xtitle: 'Percentage Food wastage' %>
+</div>

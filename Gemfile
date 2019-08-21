@@ -3,14 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'devise'
-
-gem 'bootstrap', '~> 4.3.1'
-
-gem 'jquery-rails'
-
-gem "chartkick"
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -46,6 +38,10 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails'
 gem 'bootstrap_tokenfield_rails', '~> 0.12.1'
 gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
+
+gem 'devise'
+
+gem 'chartjs-ror'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

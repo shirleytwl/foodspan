@@ -16,7 +16,7 @@ Ingredient.create(name: "Oranges", quantity: 3, unit: "pcs", expiry_date: "2019-
 Ingredient.create(name: "Duck", quantity: 4, unit: "pcs", expiry_date: "2019-08-30", purchase_date: "2019-08-19", quantity_left: 3, removed: false, bought: true, stored: true, user_id: 1)
 Ingredient.create(name: "Carrot", quantity: 2, unit: "pcs", expiry_date: "2019-08-30", purchase_date: "2019-08-19", quantity_left: 1, removed: false, bought: true, stored: true, user_id: 1)
 Ingredient.create(name: "Rambutan", quantity: 12, unit: "pcs", expiry_date: "2019-08-30", purchase_date: "2019-08-19", quantity_left: 5, removed: false, bought: false, stored: false, user_id: 1)
-Ingredient.create(name: "Pork Leg", quantity: 2, unit: "pcs", expiry_date: "2019-08-30", purchase_date: "2019-08-19", quantity_left: 3, removed: false, bought: false, stored: false, user_id: 1)
+Ingredient.create(name: "Pork Leg", quantity: 4, unit: "pcs", expiry_date: "2019-08-30", purchase_date: "2019-08-19", quantity_left: 3, removed: false, bought: false, stored: false, user_id: 1)
 Ingredient.create(name: "Cauliflower", quantity: 6, unit: "pcs", expiry_date: "2019-08-30", purchase_date: "2019-08-19", quantity_left: 3, removed: false, bought: false, stored: false, user_id: 1)
 p "SEEDED INGREDIENT DATA"
 ##################################

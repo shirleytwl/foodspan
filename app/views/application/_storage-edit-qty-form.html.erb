@@ -16,7 +16,7 @@
 		    	<span id="edit-storage-quantity-display"><%=@ingredient.quantity_left%></span>/<%=@ingredient.quantity%> <%=@ingredient.unit%>
 		    </div>
 		    <%= form.range_field :quantity_left, :min=>0, :max=>@ingredient.quantity, :class=>"slide", :id=>"edit-storage-quantity", :class=>"form-control-range" %>
-	<%= form.submit :class=>'btn btn-primary' %>
+				<%= form.submit :class=>'btn btn-primary' %>
 		  </div>
 		</div>
 

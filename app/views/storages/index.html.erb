@@ -1,3 +1,4 @@
+
 <div class="row">
 	<div class="col-10">
 		<h2>Storage</h2>
@@ -12,18 +13,19 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">Ingredient</th>
-		      <th scope="col">Qty</th>
-		      <th scope="col">Expiring in</th>
+		      <th scope="col">Qty Left</th>
+		      <th scope="col">Expiring in (Days)</th>
+		      <th></th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	<% 	@ingredients.each do |ingredient|  %>
 		  		<%
-		    		start_date = DateTime.now
+		    		start_date = Date.today
 		    		end_date = ingredient.expiry_date
 		    		days_remaining = (end_date - start_date).to_i
 		    	%>
-			    <tr class="storage-item" data-ingredient=<%= ingredient.id %>>
+			    <tr class="storage-item">
 			      <th scope="row"><%= ingredient.name%></th>
 			      <td><%= ingredient.quantity_left%> <%= ingredient.unit%></td>
 			      <td>
@@ -33,6 +35,7 @@
 			      		<span class="expired"><%= days_remaining%></span>
 		      		<% end %>
 		      	</td>
+		      	<td><button class="storage-edit-btn btn btn-primary" data-ingredient=<%= ingredient.id %>>edit</button></td>
 			    </tr>
 			  <% end %>
 		  </tbody>
@@ -40,8 +43,9 @@
 	</div>
 </div>
 
-<%= render "application/storages/add-modal" %>
-<%= render "application/storages/edit-modal" %>
+<%= render "application/storage-add-modal" %>
+<%= render "application/storage-edit-modal" %>
+<%= render "application/storage-edit-qty-modal" %>
 
 <% if user_signed_in? %>
   <li>
@@ -52,3 +56,5 @@
   <%= link_to('Login', new_user_session_path) %>
   </li>
 <% end %>
+
+<%= javascript_include_tag "storage" %>

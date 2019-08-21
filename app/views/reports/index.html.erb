@@ -7,7 +7,7 @@
 <% @details.each do |detail| %>
 	<h3><%= detail[:tag_name] %></h3>
 	<div class="progress">
- 		<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
-  	<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>
+ 		<div class="progress-bar  bg-success" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
+  	<div class="progress-bar  bg-danger" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 <% end %>

@@ -1,9 +1,65 @@
 <div class='container'>
 <%= form_with url: dashboards_path, method: :get, skip_enforcing_utf8: true do %>
 	<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();") %>
-	<%= select_tag(:wastage, options_for_select([['Wastage Ascending', 'asc'],['Wastage Descending','desc']], :selected => params[:wastage]), :onchange => "this.form.submit();") %>
-	<% end %>
+<% end %>
 
+<div>
+<p> Food Wastage: <%= @doughnut[:datasets].first[:data].first %>% </p>
+<p> Food Consumed: <%= @doughnut[:datasets].first[:data][1] %>% </p>
+<%= doughnut_chart @doughnut, @doughnutOpt %>
+</div>
 
-<%= bar_chart @details, xmin: 0.0, xmax: 100.0, legend: 'top', xtitle: 'Percentage Food wastage' %>
+<div>
+<%= bar_chart @bar, @barOpt %>
+</div>
+
+<h1> Storage Items(<%= @noInStorage %>)</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Ingredient</th>
+      <th scope="col">Quantity Left</th>
+      <th scope="col">Expiring In</th>
+    </tr>
+  </thead>
+	<tbody>
+		<% @storageItems.each do |ingredient| %>
+			<tr>
+				<td><%= ingredient.name %></td>
+				<td><%= ingredient.quantity_left %> <%= ingredient.unit %></td>
+				<td><%= ingredient.expiry_date.mjd - Date.today.mjd  %> Days</td>
+			</tr>
+		<% end %>
+
+  </tbody>
+</table>
+
+<h1> Grocery Items(<%= @noInGrocery %>)</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Ingredient</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Bought</th>
+    </tr>
+  </thead>
+	<tbody>
+		<% @groceryItems.each do |ingredient| %>
+			<tr>
+				<td><%= ingredient.name %></td>
+				<td><%= ingredient.quantity %> <%= ingredient.unit %></td>
+				<td> <div class="form-check">
+								<% if ingredient.bought %>
+									<input class="form-check-input" type="checkbox" value="" id=<%= ingredient.id %> checked disabled>
+								<% else %>
+									<input class="form-check-input" type="checkbox" value="" id=<%= ingredient.id %> disabled>
+								<% end %>
+								<label class="form-check-label" for=<%= ingredient.id %></label>
+			</div></td>
+			</tr>
+		<% end %>
+
+  </tbody>
+</table>
+
 </div>

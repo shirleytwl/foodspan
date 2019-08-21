@@ -1,0 +1,23 @@
+<%= form_with scope: :ingredient, model: @ingredient, url: update_storages_qty_path(@ingredient), local: true do |form| %>
+	<div class="row">
+		<div class="col-10">
+		  <p class="name"><%= @ingredient.name %></p>
+		  <p class="purchase_date">Purchase Date: <%= @ingredient.purchase_date %></p>
+		  <p class="purchase_date">Expiry Date: <%= @ingredient.expiry_date %></p>
+		</div>
+		<div class="col-2">
+			<span id="storage-edit-btn">Edit</span>
+  		<%= link_to 'Delete', delete_storages_path(@ingredient), :method =>:delete %>
+		</div>
+		<div class="col-12">
+		  <div class="form-group">
+		    <label for="quantity">Quantity left:</label>
+		    <div>
+		    	<span id="edit-storage-quantity-display"><%=@ingredient.quantity_left%></span>/<%=@ingredient.quantity%> <%=@ingredient.unit%>
+		    </div>
+		    <%= form.range_field :quantity_left, :min=>0, :max=>@ingredient.quantity, :class=>"slide", :id=>"edit-storage-quantity", :class=>"form-control-range" %>
+	<%= form.submit :class=>'btn btn-primary' %>
+		  </div>
+		</div>
+
+<% end %>

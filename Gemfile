@@ -41,6 +41,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 
 gem 'devise'
 
+gem "chartkick"
 gem 'chartjs-ror'
 
 group :development, :test do

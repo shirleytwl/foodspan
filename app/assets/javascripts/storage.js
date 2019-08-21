@@ -52,7 +52,27 @@ window.onload = function() {
     });
 
     $("#add-storage-tags").tokenfield();
-};
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     url: "/storage",
+    //     success: function(data){
+
+    //         var tagArray = [];
+
+    //         data.forEach(function(tag){
+    //             tagArray.push(tag.name)
+    //         })
+
+    //         $('#add-storage-tags').tokenfield({
+    //             autocomplete: {
+    //               source: tagArray,
+    //               delay: 100
+    //             },
+    //             showAutocompleteOnFocus: true
+    //           })
+    //     }
+    // });
 
 function calculateExpiryFromDate (expireDate, displayResult){
     let difference = Math.floor((new Date(expireDate).setHours(0,0,0,0)-new Date().setHours(0,0,0,0)) / (1000*60*60*24));
@@ -63,4 +83,5 @@ function calculateExpiryFromDays (expireDays, displayResult){
     let expireDate = new Date();
     expireDate.setDate(expireDate.getDate() + parseInt(expireDays));
     displayResult.datepicker('update', new Date(expireDate));
+}
 }

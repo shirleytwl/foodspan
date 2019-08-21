@@ -72,6 +72,7 @@ GEM
       xpath (~> 3.2)
     chartjs-ror (3.6.4)
       rails (>= 3.1)
+    chartkick (3.2.1)
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
@@ -233,6 +234,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chartjs-ror
+  chartkick
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise

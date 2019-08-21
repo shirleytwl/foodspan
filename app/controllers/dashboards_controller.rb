@@ -17,7 +17,6 @@ class DashboardsController < ApplicationController
     @noInGrocery = @groceryItems.size
     @groceryItems = @groceryItems.limit(5)
 
-
   end
 
   def home
@@ -86,7 +85,9 @@ class DashboardsController < ApplicationController
           end
         end
       end
-      puts prep
+
+      p prep
+    
       details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
       details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
 

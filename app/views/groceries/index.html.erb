@@ -1,6 +1,39 @@
-<h1>Grocery List</h1>
+<div class="row">
+	<div class="col-10">
+		<h2>Grocery List</h2>
+	</div>
+	<div class="col-2">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#grocery-add">+</button>
+	</div>
+</div>
 
-<%= link_to 'Add ingredient', new_groceries_path %>
+<div class="row">
+	<div class="col-12">
+		<table id="grocery-table" class="table">
+			<thread>
+				<tr>
+					<th scope="col">Ingredient</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Bought</th>
+				</tr>
+			</thread>
+			<tbody>
+				<% @ingredients.each do |ingredient| %>
+					<tr class="grocery-item" data-ingredient=<%= ingredient.id %>>
+			  		<td><%= ingredient.name %></td>
+			  		<td><%= ingredient.quantity %></td>
+			  		<td><%= ingredient.bought %></td>
+		  			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
+	  			</tr>
+  			<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<%= render "application/grocery-add-modal" %>
+<%= render "application/grocery-edit-modal" %>
+
 
 <table>
   <tr>
@@ -12,15 +45,13 @@
 
   <% @ingredients.each do |ingredient| %>
   	<tr>
-
 	  		<td><%= ingredient.name %></td>
 	  		<td><%= ingredient.quantity %></td>
 	  		<td><%= ingredient.bought %></td>
+
   			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
   			<td><%= link_to 'Edit', edit_groceries_path(ingredient) %></td>
 
   	</tr>
   <% end %>
  </table>
-
- <%= link_to 'Add to Storage', groceries_path %>

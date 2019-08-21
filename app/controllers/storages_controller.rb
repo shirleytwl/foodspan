@@ -1,14 +1,39 @@
 class StoragesController < ApplicationController
   def index
     @ingredients = Ingredient.where(stored: true, removed:false, user_id: current_user).order(expiry_date: :asc)
+    @tags = Tag.all
+
+    respond_to do |format|
+      format.html { render 'index' , locals: {ingredient: @ingredient}}
+      format.json { render json: @tags }
+    end
   end
+
   def create
+
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user = current_user
     @ingredient.bought = true
     @ingredient.stored = true
     @ingredient.quantity_left = @ingredient.quantity
     @ingredient.save
+
+    tags = params[:tag].split(', ')
+    tags = tags.uniq
+
+    tags.each do |tag|
+      inDatabase ||= Tag.where(name: tag.capitalize)
+
+      if inDatabase.size > 0
+        @ingredient.tags << inDatabase
+      else
+        newTag = Tag.new()
+        newTag.name = tag.capitalize
+        newTag.save
+        @ingredient.tags << inDatabase
+      end
+    end
+
     redirect_to storages_path
   end
 

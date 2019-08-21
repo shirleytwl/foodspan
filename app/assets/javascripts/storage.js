@@ -1,4 +1,5 @@
 window.onload = function() {
+    console.log("loaded");
     let addStoragePurchasedDate = $('#add-storage-purchased-date');
     let addStorageExpiryDate = $('#add-storage-expiry-date');
     let addStorageExpiryDays = $('#add-storage-expiry-days');
@@ -16,27 +17,37 @@ window.onload = function() {
         calculateExpiryFromDays(e.target.value,addStorageExpiryDate)
     });
 
-    let storageItems = document.querySelectorAll("#storage-table .storage-item");
+    let storageItems = document.querySelectorAll("#storage-table .storage-item .storage-edit-btn");
 
     storageItems.forEach(function(item) {
       item.addEventListener("click",function(event){
-        // $('#storage-qty-edit').modal('show');
-        // $('#storage-qty-edit .modal-body').load("/storage/"+this.dataset.ingredient+"/editqty", function() {
-
-        // });
-        $('#storage-edit').modal('show');
-        $('#storage-edit .modal-body').load("/storage/"+this.dataset.ingredient+"/edit", function() {
-            let editStoragePurchasedDate = $('#edit-storage-purchased-date');
-            let editStorageExpiryDate = $('#edit-storage-expiry-date');
-            let editStorageExpiryDays = $('#edit-storage-expiry-days');
-            calculateExpiryFromDate(editStorageExpiryDate.val(),$('#edit-storage-expiry-days'));
-            editStorageExpiryDate.datepicker().on('changeDate', function (ev) {
-                calculateExpiryFromDate(editStorageExpiryDate.val(),$('#add-storage-expiry-days'));
-            });
-            editStorageExpiryDays.on('change',function(e){
-                calculateExpiryFromDays(e.target.value,editStorageExpiryDate)
-            });
+        let ingredientId = this.dataset.ingredient;
+        $('#storage-qty-edit').modal('show');
+        $('#storage-qty-edit .modal-body').load("/storage/"+ingredientId+"/editqty", function() {
+            let editStorageQuantity = $("#edit-storage-quantity");
+            let editStorageQuantityDisplay = $("#edit-storage-quantity-display");
+            let editStorageBtn = $("#storage-edit-btn");
+            editStorageQuantity.on("change", function(e){
+                editStorageQuantityDisplay.text(e.target.value);
+            })
+            editStorageBtn.on("click", function(e){
+                $('#storage-qty-edit').modal('hide');
+                $('#storage-edit').modal('show');
+                $('#storage-edit .modal-body').load("/storage/"+ingredientId+"/edit", function() {
+                    let editStoragePurchasedDate = $('#edit-storage-purchased-date');
+                    let editStorageExpiryDate = $('#edit-storage-expiry-date');
+                    let editStorageExpiryDays = $('#edit-storage-expiry-days');
+                    calculateExpiryFromDate(editStorageExpiryDate.val(),editStorageExpiryDays);
+                    editStorageExpiryDate.datepicker().on('changeDate', function (ev) {
+                        calculateExpiryFromDate(editStorageExpiryDate.val(),editStorageExpiryDays);
+                    });
+                    editStorageExpiryDays.on('change',function(e){
+                        calculateExpiryFromDays(e.target.value,editStorageExpiryDate)
+                    });
+                });
+            })
         });
+
 
       })
     });

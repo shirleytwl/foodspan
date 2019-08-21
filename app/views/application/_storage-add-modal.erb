@@ -31,10 +31,11 @@
 						<%= form.text_field :purchase_date, class:"form-control",id:"add-storage-purchased-date", :data => {:provide => "datepicker", :date_format => "yyyy-mm-dd"}%>
 				  </div>
 				  <div class="form-group">
+				  	<%= form.label :expiry_date %>
 						<%= form.text_field :expiry_date, class:"form-control",id:"add-storage-expiry-date", :data => {:provide => "datepicker", :date_format => "yyyy-mm-dd"}%>
 				  </div>
 				  <div class="form-group">
-				  	<label for="name">Expire in</label>
+				  	<label for="name">Expire in (Days)</label>
 				    <input type="number" id="add-storage-expiry-days" class="form-control">
 				  </div>
         	<%= form.submit :class=>'btn btn-primary' %>

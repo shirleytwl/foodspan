@@ -5,10 +5,6 @@ ruby '2.6.3'
 
 gem 'devise'
 
-gem 'bootstrap', '~> 4.3.1'
-
-gem 'jquery-rails'
-
 gem "chartkick"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

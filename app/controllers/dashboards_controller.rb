@@ -17,7 +17,6 @@ class DashboardsController < ApplicationController
     @noInGrocery = @groceryItems.size
     @groceryItems = @groceryItems.limit(5)
 
-
   end
 
   ## search Storage

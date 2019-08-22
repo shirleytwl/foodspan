@@ -12,10 +12,10 @@
 		<table id="storage-table" class="table">
 		  <thead>
 		    <tr>
-		      <th scope="col">Ingredient</th>
-		      <th scope="col">Qty Left</th>
-		      <th scope="col">Expiring in (Days)</th>
-		      <th></th>
+		      <th scope="col" class="col-ingredient-name">Ingredient</th>
+		      <th scope="col" class="col-ingredient-qty">Qty Left</th>
+		      <th scope="col" class="col-ingredient-days">Expiring in (Days)</th>
+		      <th scope="col" class="col-ingredient-edit"></th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -37,7 +37,6 @@
 		      	</td>
 		      	<td>
 		      		<a class="storage-edit-btn" data-ingredient=<%= ingredient.id %>><i class="fa fa-pencil" aria-hidden="true"></i></a>
-			  			<%= link_to raw('<i class="fa fa-minus-circle" aria-hidden="true"></i>'), delete_storages_path(ingredient),:class=>"storage-delete-btn", :method =>:delete %>
 		      	</td>
 
 			    </tr>
@@ -62,4 +61,3 @@
 <% end %>
 
 <%= javascript_include_tag "storage" %>
-

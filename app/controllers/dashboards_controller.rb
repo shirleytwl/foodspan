@@ -95,10 +95,13 @@ class DashboardsController < ApplicationController
         end
       end
 
-      p prep
-
-      details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
-      details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
+      if prep.any?
+        details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
+        details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
+      else
+        details[:datasets].first[:data].push(0)
+        details[:datasets].first[:data].push(0)
+      end
 
       return details
   end

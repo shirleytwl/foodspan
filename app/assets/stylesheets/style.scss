@@ -229,8 +229,7 @@ body {
 
 /* Login Form START */
 
-.login-form,
-.register-form{
+.login-form{
 	margin-top: 4rem;
 	font-size: 1.2rem;
 	@media #{$mobile-size} {
@@ -267,8 +266,9 @@ body {
 
 /* Register Form START */
 
-.register-form{
+.register-form {
 	margin-top: 2rem;
+	font-size: 1.2rem;
 
 	.btn-primary {
 		margin: 3rem 0;
@@ -282,7 +282,7 @@ body {
 	}
 
 	label {
-		margin: .5rem 0;
+		margin: .3rem 0;
 	}
 
 
@@ -291,7 +291,7 @@ body {
 		font-size: 0.9rem;
 
 		.btn-primary {
-			margin: .5rem 0;
+			margin: 1.5rem 0;
 			padding: .5rem 1.5rem;
 			font-size: 0.9rem;
 		}
@@ -306,3 +306,39 @@ body {
 	}
 }
 /* Register Form END */
+
+/* Forget Password Form START */
+
+.forget-password-form {
+	margin-top: 3rem;
+	font-size: 1.2rem;
+
+	.btn-primary {
+		margin: 3rem 0;
+		padding: .5rem 3rem;
+		border-radius: 50px;
+		font-size: 1.2rem;
+	}
+
+	.form-group {
+		text-align: left;
+	}
+
+	label {
+		margin: .3rem 0;
+	}
+
+
+	@media #{$mobile-size} {
+		margin-top: 2.5rem;
+		font-size: 0.9rem;
+
+		.btn-primary {
+			margin: 1.5rem 0;
+			padding: .5rem 1.5rem;
+			font-size: 0.9rem;
+		}
+	}
+}
+
+/* Forget Password Form END */

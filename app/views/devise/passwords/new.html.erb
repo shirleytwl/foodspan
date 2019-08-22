@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
+<div class="row text-center ">
+	<div class="col-12">
+		<h1 class="title">Forgot your password?</h1>
+	</div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+	<div class = " offset-2 col-8 offset-md-4 col-md-4 forget-password-form">
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			<%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+			<div class="field form-group">
+				<%= f.label "Enter Your  Account Email:" %><br />
+				<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "lorem@gmail.com" %>
+			</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+			<div class="actions">
+				<%= f.submit "Recover Password", class: "btn btn-primary" %>
+			</div>
+		<% end %>
+	</div>
 
-<%= render "devise/shared/links" %>
+	<div class = "offset-2 col-8 offset-md-4 col-md-4 register-text">
+			<p class="mb-0">Have an existing account?</p>
+			<p>Click <%= link_to 'here', new_user_session_path %> to login now! </p>
+	</div>
+
+</div>

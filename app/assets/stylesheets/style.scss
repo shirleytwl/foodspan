@@ -401,3 +401,23 @@ h2.sub-title {
 	box-shadow: none;
 	border: 1px solid $gray;
 }
+
+/* Report Progress Bar START */
+
+.consumed-text {
+	color: $green;
+}
+
+.waste-text {
+	color: $red;
+}
+
+#consumed-bar {
+	background-color: $lgreen;
+}
+
+#waste-bar {
+	background-color: $lred;
+}
+
+/* Report Progress Bar END */

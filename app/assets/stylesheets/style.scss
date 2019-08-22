@@ -402,6 +402,27 @@ h2.sub-title {
 	border: 1px solid $gray;
 }
 
+
+/* Report Progress Bar START */
+
+.consumed-text {
+	color: $green;
+}
+
+.waste-text {
+	color: $red;
+}
+
+#consumed-bar {
+	background-color: $lgreen;
+}
+
+#waste-bar {
+	background-color: $lred;
+}
+
+/* Report Progress Bar END */
+
 /* Edit Storage Form START */
 #edit-storage-quantity {
 	margin: 2rem 0;
@@ -412,7 +433,6 @@ h2.sub-title {
 .col-ingredient-name {
 	width: 50%;
 }
-
 
 /* Modal START */
 .modal-content {

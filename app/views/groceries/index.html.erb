@@ -18,7 +18,7 @@
 				</tr>
 			</thread>
 			<tbody>
-				<% @ingredients.each do |ingredient| %>
+				<% @ingredients.where(:stored => false).each do |ingredient| %>
 					<tr class="grocery-item">
 			  		<td><%= ingredient.name %></td>
 			  		<td><%= ingredient.quantity %></td>
@@ -40,11 +40,12 @@
 		</table>
 	</div>
 </div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groceries-storages-add">Add to Storage</button>
+
 <%= render "application/grocery-add-modal" %>
 <%= render "application/grocery-edit-modal" %>
 <%= render "application/grocery-storage-add-modal" %>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_groceries_storages">Add to Storage</button>
 
 <% if user_signed_in? %>
   <li>

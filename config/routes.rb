@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   post '/grocery' => 'groceries#create'
   get '/grocery/:id/edit' => 'groceries#edit', as: 'edit_groceries'
   patch '/grocery/:id/edit' => 'groceries#update', as: 'update_groceries'
-
   patch '/grocery/:id/editbought' => 'groceries#updatebought', as: 'update_groceries_bought'
-
   delete '/grocery/:id' => 'groceries#destroy', as: 'delete_groceries'
   patch '/grocery/storage' => 'groceries#addgroceriesstorages', as: 'add_groceries_storages'
 

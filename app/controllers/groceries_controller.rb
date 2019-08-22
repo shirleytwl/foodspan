@@ -1,6 +1,6 @@
 class GroceriesController < ApplicationController
   def index
-    @ingredients = Ingredient.all.where(stored: false)
+    @ingredients = Ingredient.all
   end
 
   def show
@@ -50,10 +50,11 @@ class GroceriesController < ApplicationController
     end
 
     @ingredient.save
+    redirect_to groceries_path
   end
 
   private
     def ingredient_params
-      params.require(:ingredient).permit(:name, :quantity, :unit)
+      params.require(:ingredient).permit(:name, :quantity, :unit, :bought, :expiry_date)
     end
 end

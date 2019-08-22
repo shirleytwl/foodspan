@@ -1,0 +1,57 @@
+<div class="modal fade" id="groceries-storages-add" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Ingredient/s to Storage</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-4">Ingredient</div>
+					<div class="col-4">Expiry Date</div>
+					<div class="col-4">Expiry In</div>
+				</div>
+
+				<% @ingredients.where(:stored=>false, :bought=>true).each_with_index do |ingredient,index| %>
+
+				<div class="row">
+					<div class="col-12">
+
+						<%= form_with scope: :ingredient, model: ingredient, url: add_groceries_storages_path(@ingredient), local: true do |form| %>
+
+
+							<div class="row">
+
+								<div class="col-4"><%= ingredient.name %></div>
+
+								<div class="col-4">
+									<div class="form-group">
+										<%= form.text_field :expiry_date, class:"form-control add-grocery-storage-expiry-date",id:"add-grocery-storage-expiry-date-#{index}", :data => {:provide => "datepicker", :date_format => "yyyy-mm-dd"}%>
+								  </div>
+								</div>
+
+								<div class="col-4">
+									<div class="form-group">
+								    <input type="number" class="add-grocery-storage-expiry-days" id="add-grocery-storage-expiry-days-<%=index%>" value="0" class="form-control">
+								  </div>
+								</div>
+
+							</div>
+
+						<% end %>
+
+
+
+
+					</div>
+				</div>
+
+				<% end %>
+
+			</div>
+		</div>
+	</div>
+</div>

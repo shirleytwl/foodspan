@@ -38,6 +38,17 @@
 		  </div>
 		</div>
 		<div class="col-12">
+			<div class="form-group">
+				<label for="tags">Ingredient Tags</label>
+
+				<input name="tag" type="text" id="edit-storage-tags" class="tokenize" value = <%= tag %>>
+			</div>
+		</div>
+		<div class="col-12">
 			<%= form.submit :class=>'btn btn-primary' %>
 		</div>
 <% end %>
+
+<script>
+$("#edit-storage-tags").tokenfield();
+</script>

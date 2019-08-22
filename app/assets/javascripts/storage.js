@@ -27,8 +27,12 @@ window.onload = function() {
             let editStorageQuantity = $("#edit-storage-quantity");
             let editStorageQuantityDisplay = $("#edit-storage-quantity-display");
             let editStorageBtn = $("#storage-edit-btn");
+            let deleteStorageBtn = $("#storage-delete-btn");
+            let deleteStorageModal = $("#confirm-storage");
+            let deleteStorageModalOverlay = $("#confirm-storage-overlay");
             editStorageQuantity.on("change", function(e){
                 editStorageQuantityDisplay.text(e.target.value);
+                $("#remove_storages").val(e.target.value);
             })
             editStorageBtn.on("click", function(e){
                 $('#storage-qty-edit').modal('hide');
@@ -46,6 +50,15 @@ window.onload = function() {
                     });
                 });
             })
+            deleteStorageBtn.on("click",function(e){
+                deleteStorageModal.fadeIn();
+                deleteStorageModalOverlay.fadeIn();
+            })
+            deleteStorageModalOverlay.on("click",function(e){
+                deleteStorageModal.fadeOut();
+                deleteStorageModalOverlay.fadeOut();
+            })
+
         });
 
 
@@ -76,14 +89,15 @@ window.onload = function() {
     //     }
     // });
 
-function calculateExpiryFromDate (expireDate, displayResult){
-    let difference = Math.floor((new Date(expireDate).setHours(0,0,0,0)-new Date().setHours(0,0,0,0)) / (1000*60*60*24));
-    displayResult.val(difference);
-}
 
-function calculateExpiryFromDays (expireDays, displayResult){
-    let expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() + parseInt(expireDays));
-    displayResult.datepicker('update', new Date(expireDate));
-}
+    function calculateExpiryFromDate (expireDate, displayResult){
+        let difference = Math.floor((new Date(expireDate).setHours(0,0,0,0)-new Date().setHours(0,0,0,0)) / (1000*60*60*24));
+        displayResult.val(difference);
+    }
+
+    function calculateExpiryFromDays (expireDays, displayResult){
+        let expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() + parseInt(expireDays));
+        displayResult.datepicker('update', new Date(expireDate));
+    }
 }

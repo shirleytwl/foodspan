@@ -466,3 +466,70 @@ h2.sub-title {
 			}
 	}
 }
+
+/* Report Progress Bar START */
+
+.consumed-text {
+	color: $green;
+}
+
+.waste-text {
+	color: $red;
+}
+
+#consumed-bar {
+	background-color: $lgreen;
+}
+
+#waste-bar {
+	background-color: $lred;
+}
+
+/* Report Progress Bar END */
+
+/* Edit Storage Form START */
+#edit-storage-quantity {
+	margin: 2rem 0;
+}
+
+/* Edit Storage Form END */
+
+.col-ingredient-name {
+	width: 50%;
+}
+
+/* Modal START */
+.modal-content {
+	border: 0;
+  border-radius: 20px;
+}
+/* Modal END */
+
+#confirm-storage {
+	display: none;
+	border: 0;
+  border-radius: 0.3rem;
+  outline: 0;
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 75%;
+  z-index: 1;
+}
+#confirm-storage-overlay {
+	display: none;
+	position: absolute;
+	top: -63px;
+  left: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 63px;
+  box-sizing: content-box;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 20px;
+}

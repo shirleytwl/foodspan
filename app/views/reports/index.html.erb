@@ -1,13 +1,36 @@
-<%= form_with url: reports_path, method: :get, skip_enforcing_utf8: true do %>
-<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();") %>
-<%= select_tag(:wastage, options_for_select([['Wastage Ascending', 'asc'],['Wastage Descending','desc']], :selected => params[:wastage]), :onchange => "this.form.submit();") %>
-<% end %>
-
-
-<% @details.each do |detail| %>
-	<h3><%= detail[:tag_name] %></h3>
-	<div class="progress">
- 		<div class="progress-bar  bg-success text-left" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"><%= detail[:consumed] %>%</div>
-  	<div class="progress-bar  bg-danger text-right" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"><%= detail[:waste] %>%</div>
+<div class="row section">
+	<div class="col-12">
+		<h1 class="title">Food Report</h1>
 	</div>
-<% end %>
+</div>
+<div class="row">
+	<div class="col-6">
+		<%= form_with url: reports_path, method: :get, skip_enforcing_utf8: true do %>
+		<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();", :class => 'form-control') %>
+	</div>
+
+	<div class="col-6">
+		<%= select_tag(:wastage, options_for_select([['Wastage Ascending', 'asc'],['Wastage Descending','desc']], :selected => params[:wastage]), :onchange => "this.form.submit();", :class => 'form-control') %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row section">
+	<div class="col-12">
+		<% @details.each do |detail| %>
+			<div class="row section">
+				<div class="col-12">
+					<h2 class="sub-title"><%= detail[:tag_name] %></h2>
+					<div class="progress">
+				 		<div class="progress-bar" id="consumed-bar" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
+				  	<div class="progress-bar" id="waste-bar" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<div class="row">
+						<div class="col consumed-text"><%= "#{detail[:consumed]}%" %></div>
+						<div class="col waste-text text-right"><%= "#{detail[:waste]}%" %></div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

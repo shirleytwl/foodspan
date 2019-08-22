@@ -1,6 +1,6 @@
 class GroceriesController < ApplicationController
   def index
-    @ingredients = Ingredient.all.where(stored: false)
+    @ingredients = Ingredient.all.where(:user => current_user)
   end
 
   def show
@@ -36,8 +36,25 @@ class GroceriesController < ApplicationController
     redirect_to groceries_path
   end
 
+  def addgroceriesstorages
+    p "editing"
+  end
+
+  def updatebought
+    @ingredient = Ingredient.find(params[:id])
+
+    if @ingredient[:bought]
+      @ingredient[:bought] = false
+    else
+      @ingredient[:bought] = true
+    end
+
+    @ingredient.save
+    redirect_to groceries_path
+  end
+
   private
     def ingredient_params
-      params.require(:ingredient).permit(:name, :quantity, :unit)
+      params.require(:ingredient).permit(:name, :quantity, :unit, :bought, :expiry_date)
     end
 end

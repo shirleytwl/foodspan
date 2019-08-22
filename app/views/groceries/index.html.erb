@@ -15,6 +15,8 @@
 					<th scope="col">Ingredient</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Bought</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 			</thread>
 			<tbody>
@@ -24,11 +26,21 @@
 			  		<td><%= ingredient.quantity %></td>
 			  		<td>
 			  			<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
-			  			<% if ingredient.bought %>
-			  				<%= form.check_box :bought, class: "check_box", :checked => true %>
+							<% if ingredient.bought %>
+							<label>
+								<div class="box">
+									<%= form.check_box :bought, class: "check_box",:checked => true %>
+									<span class="check"></span>
+								</div>
+							</label>
 			  			<% else %>
-			  				<%= form.check_box :bought, class: "check_box"%>
-			  				<% end %>
+								<label>
+									<div class="box">
+										<%= form.check_box :bought, class: "check_box" %>
+										<span class="check"></span>
+									</div>
+								</label>
+			  			<% end %>
 
 			  			<% end %>
 			  		</td>
@@ -46,15 +58,5 @@
 <%= render "application/grocery-add-modal" %>
 <%= render "application/grocery-edit-modal" %>
 <%= render "application/grocery-storage-add-modal" %>
-
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path) %>
-  </li>
-<% end %>
 
 <%= javascript_include_tag "grocery" %>

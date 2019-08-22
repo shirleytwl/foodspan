@@ -15,23 +15,22 @@
 	</div>
 </div>
 
-
 <div class="row section">
 	<div class="col-12">
-			<% @details.each do |detail| %>
-				<div class="row section">
-					<div class="col-12">
-						<h2 class="sub-title"><%= detail[:tag_name] %></h2>
-						<div class="progress">
-					 		<div class="progress-bar" id="consumed-bar" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
-					  	<div class="progress-bar" id="waste-bar" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-						<div class="row">
-							<div class="col consumed-text"><%= "#{detail[:consumed]}%" %></div>
-							<div class="col waste-text text-right"><%= "#{detail[:waste]}%" %></div>
-						</div>
+		<% @details.each do |detail| %>
+			<div class="row section">
+				<div class="col-12">
+					<h2 class="sub-title"><%= detail[:tag_name] %></h2>
+					<div class="progress">
+				 		<div class="progress-bar" id="consumed-bar" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
+				  	<div class="progress-bar" id="waste-bar" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<div class="row">
+						<div class="col consumed-text"><%= "#{detail[:consumed]}%" %></div>
+						<div class="col waste-text text-right"><%= "#{detail[:waste]}%" %></div>
 					</div>
 				</div>
-			<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>

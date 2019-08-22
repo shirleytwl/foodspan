@@ -15,25 +15,38 @@
 					<th scope="col">Ingredient</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Bought</th>
+					<th scope="col"></th>
 				</tr>
 			</thread>
 			<tbody>
 				<% @ingredients.where(:stored => false).each do |ingredient| %>
 					<tr class="grocery-item">
 			  		<td><%= ingredient.name %></td>
-			  		<td><%= ingredient.quantity %></td>
+			  		<td><%= ingredient.quantity %> <%= ingredient.unit %></td>
 			  		<td>
 			  			<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
-			  			<% if ingredient.bought %>
-			  				<%= form.check_box :bought, class: "check_box", :checked => true %>
+							<% if ingredient.bought %>
+							<label>
+								<div class="box">
+									<%= form.check_box :bought, class: "check_box",:checked => true %>
+									<span class="check"></span>
+								</div>
+							</label>
 			  			<% else %>
-			  				<%= form.check_box :bought, class: "check_box"%>
-			  				<% end %>
+								<label>
+									<div class="box">
+										<%= form.check_box :bought, class: "check_box" %>
+										<span class="check"></span>
+									</div>
+								</label>
+			  			<% end %>
 
 			  			<% end %>
 			  		</td>
-		  			<td><button data-ingredient="<%= ingredient.id%>" class="grocery-edit-btn btn btn-primary">Edit</button></td>
-		  			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
+						<td>
+							<a data-ingredient=<%= ingredient.id%> class="grocery-edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+							&nbsp;<%= link_to raw('  <i class="fa fa-trash" aria-hidden="true"></i>'), delete_groceries_path(ingredient), :method =>:delete %>
+						</td>
 	  			</tr>
   			<% end %>
 			</tbody>
@@ -46,15 +59,5 @@
 <%= render "application/grocery-add-modal" %>
 <%= render "application/grocery-edit-modal" %>
 <%= render "application/grocery-storage-add-modal" %>
-
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path) %>
-  </li>
-<% end %>
 
 <%= javascript_include_tag "grocery" %>

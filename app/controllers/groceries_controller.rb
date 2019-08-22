@@ -37,7 +37,16 @@ class GroceriesController < ApplicationController
   end
 
   def addgroceriesstorages
-    p "editing"
+    params[:ids].each do |id|
+      id=id.to_i
+      ingredient = Ingredient.find(id)
+      ingredient.expiry_date = params[:date].first
+      ingredient.stored = true
+      ingredient.save
+      params[:date].shift
+    end
+
+    redirect_to groceries_path
   end
 
   def updatebought

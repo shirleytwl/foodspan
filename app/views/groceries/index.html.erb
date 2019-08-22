@@ -22,7 +22,7 @@
 				<% @ingredients.where(:stored => false).each do |ingredient| %>
 					<tr class="grocery-item">
 			  		<td><%= ingredient.name %></td>
-			  		<td><%= ingredient.quantity %></td>
+			  		<td><%= ingredient.quantity %> <%= ingredient.unit %></td>
 			  		<td>
 			  			<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
 							<% if ingredient.bought %>

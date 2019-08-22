@@ -109,7 +109,7 @@ body {
 	  position:absolute;
 	  top:56px;
 	  left: 0;
-	  border-radius: 0 0 80px 80px;
+	  // border-radius: 0 0 80px 80px;
 	}
 	.home-cover-overlay {
 		display: flex;
@@ -226,3 +226,83 @@ body {
 .storage-delete-btn i {
 	color: #9B5756;
 }
+
+/* Login Form START */
+
+.login-form,
+.register-form{
+	margin-top: 4rem;
+	font-size: 1.2rem;
+	@media #{$mobile-size} {
+		margin-top: 2rem;
+		font-size: 0.9rem;
+	}
+
+	.btn-primary {
+		padding: .5rem 3rem;
+		border-radius: 50px;
+		font-size: 1.2rem;
+		@media #{$mobile-size} {
+			padding: .5rem 1.5rem;
+			font-size: 0.9rem;
+		}
+	}
+	.form-group {
+		text-align: left;
+	}
+
+	label {
+		margin: .5rem 0;
+	}
+}
+
+.login-text {
+	font-size: 1.3rem;
+	@media #{$mobile-size} {
+		font-size: 0.9rem;
+	}
+}
+
+/* Login Form END */
+
+/* Register Form START */
+
+.register-form{
+	margin-top: 2rem;
+
+	.btn-primary {
+		margin: 3rem 0;
+		padding: .5rem 3rem;
+		border-radius: 50px;
+		font-size: 1.2rem;
+	}
+
+	.form-group {
+		text-align: left;
+	}
+
+	label {
+		margin: .5rem 0;
+	}
+
+
+	@media #{$mobile-size} {
+		margin-top: 0;
+		font-size: 0.9rem;
+
+		.btn-primary {
+			margin: .5rem 0;
+			padding: .5rem 1.5rem;
+			font-size: 0.9rem;
+		}
+	}
+}
+
+
+.register-text {
+	font-size: 1.3rem;
+	@media #{$mobile-size} {
+		font-size: 0.9rem;
+	}
+}
+/* Register Form END */

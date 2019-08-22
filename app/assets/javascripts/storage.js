@@ -52,6 +52,7 @@ window.onload = function() {
     });
 
     $("#add-storage-tags").tokenfield();
+
     // $.ajax({
     //     type: "GET",
     //     dataType: "json",

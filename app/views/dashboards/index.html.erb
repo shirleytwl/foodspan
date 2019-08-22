@@ -1,9 +1,94 @@
-<div class='container'>
-<%= form_with url: dashboards_path, method: :get, skip_enforcing_utf8: true do %>
-	<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();") %>
-	<%= select_tag(:wastage, options_for_select([['Wastage Ascending', 'asc'],['Wastage Descending','desc']], :selected => params[:wastage]), :onchange => "this.form.submit();") %>
-	<% end %>
+<div class="row section">
+	<div class="col-12">
+		<h1 class="title">Dashboard</h1>
+	</div>
+</div>
+<div class="row section">
+	<div class="col-6 col-md-6">
+		<h2 class="sub-title">Food Report</h2>
+	</div>
+	<div class="col-6">
+		<%= form_with url: dashboards_path, method: :get, skip_enforcing_utf8: true do %>
+			<%= select_tag(:duration, options_for_select([['All Time', 'all'],['Last Year','year'],['Last Quarter', 'quarter'],['Last Month', 'month'], ['Last Week', 'week'], ['Yesterday', 'day']], :selected => params[:duration]), :onchange => "this.form.submit();", :class => 'form-control') %>
+		<% end %>
+	</div>
+	<div class="col-12">
+		<div class="row align-items-center doughnut">
+			<div class="col-6 col-md-4">
+				<p class="text-center consumed">Food Consumed <span class="doughnut-stats"><%= @doughnut[:datasets].first[:data][1] %>%</span></p>
+			</div>
+			<div class="col-10 offset-1 col-md-4 order-1 order-md-0 offset-md-0">
+				<%= doughnut_chart @doughnut, @doughnutOpt %>
+			</div>
+			<div class="col-6 col-md-4">
+				<p class="text-center wastage">Food Wasted <span class="doughnut-stats"><%= @doughnut[:datasets].first[:data].first %>%</span></p>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-<%= bar_chart @details, xmin: 0.0, xmax: 100.0, legend: 'top', xtitle: 'Percentage Food wastage' %>
+<div class="row section">
+	<div class="col-12">
+		<%= bar_chart @bar, @barOpt %>
+	</div>
+</div>
+
+<div class="row section">
+	<div class="col-12">
+		<h2 class="sub-title mb-5"> Storage Items (<%= @noInStorage %>)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Ingredient</th>
+					<th scope="col">Quantity Left</th>
+					<th scope="col">Expiring In</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @storageItems.each do |ingredient| %>
+				<tr>
+					<td><%= ingredient.name %></td>
+					<td><%= ingredient.quantity_left %> <%= ingredient.unit %></td>
+					<td><%= ingredient.expiry_date.mjd - Date.today.mjd  %> Days</td>
+				</tr>
+				<% end %>
+
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div class="row section">
+	<div class="col-12">
+		<h2 class="sub-title mb-5"> Grocery Items (<%= @noInGrocery %>)</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Ingredient</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Bought</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @groceryItems.each do |ingredient| %>
+				<tr>
+					<td><%= ingredient.name %></td>
+					<td><%= ingredient.quantity %> <%= ingredient.unit %></td>
+					<td>
+						<div class="form-check">
+							<% if ingredient.bought %>
+								<input class="form-check-input" type="checkbox" value="" id=<%= ingredient.id %> checked disabled>
+							<% else %>
+								<input class="form-check-input" type="checkbox" value="" id=<%= ingredient.id %> disabled>
+							<% end %>
+						</div>
+					</td>
+				</tr>
+				<% end %>
+
+			</tbody>
+		</table>
+	</div>
 </div>

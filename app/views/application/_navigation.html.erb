@@ -1,0 +1,42 @@
+<nav class="navbar bg-light fixed-top">
+  <a class="navbar-brand" href="/">foodspan</a>
+
+  <% if user_signed_in? %>
+	  <a href="#" class="navbar-brand nav-open">☰</a>
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	  	<div class="d-flex justify-content-end"><a href="#" class="navbar-brand nav-open"></a></div>
+	    <ul class="navbar-nav user-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/dashboards">Dashboard <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/grocery">Grocery List</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/storage">Storage</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/reports">Food Report</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/users/edit">Edit Profile</a>
+	      </li>
+	      <li class="nav-item">
+  				<%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: "nav-link") %>
+	      </li>
+	    </ul>
+	  </div>
+	  <div class="nav-overlay"></div>
+
+	<% else %>
+    <ul class="navbar-nav guest-nav">
+      <li class="nav-item">
+				<a href="/users/sign_in" class="btn btn-outline-primary">Login</a>
+			</li>
+      <li class="nav-item">
+				<a href="/users/sign_up" class="btn btn-primary">Sign Up</a>
+			</li>
+		</ul>
+	</div>
+  <% end %>
+</nav>

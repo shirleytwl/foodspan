@@ -1,0 +1,403 @@
+/* Colors */
+$green: #346102;
+$lgreen: rgba(111, 150, 55, 1);
+$red: #802E00;
+$lred: rgba(190, 94, 40, 1);
+$black: #333;
+$gray: #ccc;
+$mobile-size: "only screen and (max-width: 544px)";
+
+
+body {
+	font-family: 'Quicksand', sans-serif;
+	color: $black;
+}
+
+.content {
+	margin-top: calc(56px + 2rem);
+}
+.section {
+	margin: 4rem 0;
+	@media #{$mobile-size} {
+		margin: 2rem 0;
+	}
+}
+
+/* Navbar START */
+.navbar {
+	background-color: #eee;
+	height:56px;
+
+	#navbarNav {
+		justify-content: end;
+	}
+	.navbar-nav.guest-nav {
+		flex-direction: row;
+		.nav-item {
+			margin-left: 1rem;
+			@media #{$mobile-size} {
+				margin-left: 0.5rem;
+				a {
+					font-size: 0.875rem;
+				}
+			}
+		}
+	}
+	.navbar-nav.user-nav{
+		.nav-link {
+			letter-spacing: 0.15rem;
+			color: #333;
+		}
+	}
+	.navbar-brand {
+		color: $green;
+		letter-spacing: 0.25rem;
+		font-weight:400;
+		text-transform: uppercase;
+		@media #{$mobile-size} {
+			font-size:1rem;
+			margin: 0;
+		}
+	}
+
+}
+
+#collapsibleNavbar {
+	height: 100vh;
+	width: 320px;
+	position: fixed;
+	left: auto;
+	right: -320px;
+	top: 0;
+	display: block!important;
+	background: #fff;
+	padding: 8px 20px;
+	z-index: 1000;
+	transition: .5s;
+	box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+}
+#collapsibleNavbar.show {
+	right:0;
+}
+
+
+#collapsibleNavbar ul li {
+	padding:10px;
+	border-bottom: 1px solid #eee;
+}
+
+.nav-overlay {
+	height: 100vh;
+	width: 100%;
+	max-width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 999;
+	display: none;
+}
+
+/* Navbar END */
+
+.home-cover {
+	width: 100%;
+	height:calc(100vh - 56px);
+	margin-top: -2rem;
+	.home-cover-image {
+		background-image: asset-url('home-cover.jpg');
+		background-size: cover;
+		background-position: 66% top;
+		height:inherit;
+		width: 100%;
+		max-width: 100vw;
+		position:absolute;
+		top:56px;
+		left: 0;
+	  // border-radius: 0 0 80px 80px;
+	}
+	.home-cover-overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height:inherit;
+		width: 100%;
+		max-width: 100vw;
+		position:absolute;
+		top:56px;
+		left: 0;
+		.home-cover-text  {
+			margin-top:8rem;
+			@media #{$mobile-size} {
+				margin-top:2rem;
+			}
+		}
+		.home-cover-text h1{
+			color: $green;
+			letter-spacing: 1rem;
+			font-weight:300;
+			font-size: 4rem;
+			margin-bottom: 2rem;
+			text-transform: uppercase;
+			@media #{$mobile-size} {
+				letter-spacing: 0.5rem;
+				font-size: 2.75rem;
+			}
+		}
+		.home-cover-text p {
+			color: #333;
+			letter-spacing: 0.15rem;
+			font-weight:300;
+			font-size: 1.5rem;
+			margin-bottom: 2rem;
+			@media #{$mobile-size} {
+				font-size: 1rem;
+			}
+		}
+		.btn-primary {
+			font-size: 21px;
+			padding: 6px 40px;
+		}
+	}
+}
+.section.try-now {
+	h1 {
+		letter-spacing: 0.25rem;
+		font-weight:300;
+		@media #{$mobile-size} {
+			font-size: 2rem;
+		}
+	}
+	.btn {
+		font-size: 21px;
+		padding: 6px 40px;
+		margin-top: 2rem;
+	}
+}
+.section.feature {
+	.feature-img {
+		border-radius: 20px;
+	}
+	h2 {
+		letter-spacing: 0.25rem;
+		font-weight:300;
+		line-height: 1.5;
+		margin-bottom: 2rem;
+		@media #{$mobile-size} {
+			font-size: 1.5rem;
+		}
+	}
+	p {
+		letter-spacing: 0.15rem;
+	}
+}
+
+h1.title {
+	text-align: center;
+	font-weight: 400;
+	@media #{$mobile-size} {
+		font-size: 1.75rem
+	}
+}
+h2.sub-title {
+	font-weight: 400;
+	@media #{$mobile-size} {
+		font-size: 1.25rem;
+	}
+}
+
+.btn-primary {
+	background-color: $green;
+	border-color: $green;
+	color: #fff;
+	border-radius: 20px;
+	letter-spacing: 0.15rem;
+}
+
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled):focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus{
+	background-color: $lgreen;
+	border-color: $lgreen;
+	box-shadow:none;
+}
+.btn-outline-primary {
+	color: $green;
+	border-color: $green;
+	border-radius: 20px;
+	letter-spacing: 0.15rem;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled):focus,
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus{
+	color: $lgreen;
+	border-color: $lgreen;
+	background-color: #FFF;
+	box-shadow:none;
+}
+
+.storage-edit-btn i {
+	color: $green;
+	margin-right: 1rem;
+}
+.storage-delete-btn i {
+	color: #9B5756;
+}
+
+
+/* Dashboard Stats */
+
+.doughnut {
+	margin-top: 4rem;
+	p {
+		font-size: 1.5rem;
+		span {
+			margin-top: 1rem;
+			font-size: 3.5rem;
+			font-weight: 300;
+		}
+	}
+	.wastage {
+		color: $lred;
+	}
+	.consumed {
+		color: $lgreen;
+	}
+	.doughnut-stats {
+		display: block;
+	}
+	@media #{$mobile-size} {
+		margin-top: 2rem;
+		p {
+			font-size: 1.15rem;
+			span {
+				margin-top: 1rem;
+				font-size: 1.5rem;
+				font-weight: 300;
+			}
+		}
+	}
+}
+/* Login Form START */
+
+.login-form{
+	margin-top: 4rem;
+	font-size: 1.2rem;
+	@media #{$mobile-size} {
+		margin-top: 2rem;
+		font-size: 0.9rem;
+	}
+
+	.btn-primary {
+		padding: .5rem 3rem;
+		border-radius: 50px;
+		font-size: 1.2rem;
+		@media #{$mobile-size} {
+			padding: .5rem 1.5rem;
+			font-size: 0.9rem;
+		}
+	}
+	.form-group {
+		text-align: left;
+	}
+
+	label {
+		margin: .5rem 0;
+	}
+}
+
+.login-text {
+	font-size: 1.3rem;
+	@media #{$mobile-size} {
+		font-size: 0.9rem;
+	}
+}
+
+/* Login Form END */
+
+/* Register Form START */
+
+.register-form {
+	margin-top: 2rem;
+	font-size: 1.2rem;
+
+	.btn-primary {
+		margin: 3rem 0;
+		padding: .5rem 3rem;
+		border-radius: 50px;
+		font-size: 1.2rem;
+	}
+
+	.form-group {
+		text-align: left;
+	}
+
+	label {
+		margin: .3rem 0;
+	}
+
+
+	@media #{$mobile-size} {
+		margin-top: 0;
+		font-size: 0.9rem;
+
+		.btn-primary {
+			margin: 1.5rem 0;
+			padding: .5rem 1.5rem;
+			font-size: 0.9rem;
+		}
+	}
+}
+
+
+.register-text {
+	font-size: 1.3rem;
+	@media #{$mobile-size} {
+		font-size: 0.9rem;
+	}
+}
+/* Register Form END */
+
+/* Forget Password Form START */
+
+.forget-password-form {
+	margin-top: 3rem;
+	font-size: 1.2rem;
+
+	.btn-primary {
+		margin: 3rem 0;
+		padding: .5rem 3rem;
+		border-radius: 50px;
+		font-size: 1.2rem;
+	}
+
+	.form-group {
+		text-align: left;
+	}
+
+	label {
+		margin: .3rem 0;
+	}
+
+
+	@media #{$mobile-size} {
+		margin-top: 2.5rem;
+		font-size: 0.9rem;
+
+		.btn-primary {
+			margin: 1.5rem 0;
+			padding: .5rem 1.5rem;
+			font-size: 0.9rem;
+		}
+	}
+}
+/* Forget Password Form END */
+
+/* Select tags */
+.form-control:focus {
+	outline: none;
+	box-shadow: none;
+	border: 1px solid $gray;
+}

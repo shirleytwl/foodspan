@@ -4,6 +4,7 @@ window.onload = function() {
     let addStorageExpiryDays = $('#add-storage-expiry-days');
 
     $('#storage-add').on('shown.bs.modal', function (e) {
+        console.log(addStoragePurchasedDate)
         addStoragePurchasedDate.datepicker('update', new Date());
         addStorageExpiryDate.datepicker('update', new Date());
         calculateExpiryFromDate(addStorageExpiryDate.val(),addStorageExpiryDays);

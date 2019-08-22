@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-10">
-		<h2>Grocery List</h2>
+		<h2>Grocery List (<%= @ingredients.where(:stored => false).length %>)</h2>
 	</div>
 	<div class="col-2">
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#grocery-add">+</button>
@@ -18,11 +18,20 @@
 				</tr>
 			</thread>
 			<tbody>
-				<% @ingredients.each do |ingredient| %>
+				<% @ingredients.where(:stored => false).each do |ingredient| %>
 					<tr class="grocery-item">
 			  		<td><%= ingredient.name %></td>
 			  		<td><%= ingredient.quantity %></td>
-			  		<td><%= ingredient.bought %></td>
+			  		<td>
+			  			<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
+			  			<% if ingredient.bought %>
+			  				<%= form.check_box :bought, class: "check_box", :checked => true %>
+			  			<% else %>
+			  				<%= form.check_box :bought, class: "check_box"%>
+			  				<% end %>
+
+			  			<% end %>
+			  		</td>
 		  			<td><button data-ingredient="<%= ingredient.id%>" class="grocery-edit-btn btn btn-primary">Edit</button></td>
 		  			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
 	  			</tr>
@@ -31,8 +40,12 @@
 		</table>
 	</div>
 </div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groceries-storages-add">Add to Storage</button>
+
 <%= render "application/grocery-add-modal" %>
 <%= render "application/grocery-edit-modal" %>
+<%= render "application/grocery-storage-add-modal" %>
 
 <% if user_signed_in? %>
   <li>

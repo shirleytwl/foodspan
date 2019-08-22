@@ -27,17 +27,24 @@ class DashboardsController < ApplicationController
 
   ## search Storage
   private def storageDashboard (ingredients)
-    ingredients.where(stored: true).where(removed: false).where(user: current_user).order(expiry_date: :asc)
+    ingredients.where(stored: true, removed: false,user: current_user).order(expiry_date: :asc)
   end
 
   ## search Storage
   private def groceryDashboard (ingredients)
-    ingredients.where(stored: false).where(removed: false).where(user: current_user).order(created_at: :asc)
+    ingredients.where(stored: false, removed: false, user: current_user).order(created_at: :asc)
   end
 
   ## doughnut data + options
   private def doughnutChart(tags,duration)
-      details = {:labels => ['Wasted', 'Consumed'], :datasets => [{:label => 'Food Wastage', :backgroundColor => ['red', 'green'] , :borderColor =>'black', :data => []}]}
+      details = {:labels => ['Wasted', 'Consumed'],
+        :datasets => [{
+          :label => 'Food Wastage',
+          :backgroundColor => ['rgba(190, 94, 40, 1)', 'rgba(111, 150, 55, 1'],
+          :hoverBackgroundColor => ['rgba(190, 94, 40, 0.8)', 'rgba(111, 150, 55, .8)'],
+          :data => []
+        }]
+      }
       prep = []
 
       tags.each do |tag|
@@ -99,7 +106,7 @@ class DashboardsController < ApplicationController
   private def doughnutOptions
     options = {
       :responsive => true,
-      :maintainAspectRatio => false,
+      :maintainAspectRatio => true,
       :width => 300,
       :height => 300,
       :legend => {
@@ -111,11 +118,11 @@ class DashboardsController < ApplicationController
   ## column_chart data + options
 
   private def barChart(tags)
-    details = {:labels => [], :datasets => [{:label => 'Wastage', :type => 'line', :borderColor => 'green', :data => [], :fill => false}, {:label => 'Wastage', :type => 'bar', :backgroundColor => 'blue', :backgroundColorHover => "aqua", :data => []}]}
+    details = {:labels => [], :datasets => [{:label => 'Wastage', :type => 'line', :borderColor => '#666666', :data => [], :fill => false}, {:label => 'Wastage', :type => 'bar', :backgroundColor => 'rgba(93, 121, 145, 1)', :backgroundColorHover => "rgba(93, 121, 145, 0.8)", :data => []}]}
 
     numMonths = Date.today.month
 
-    until numMonths == 0 do
+    until numMonths == (Date.today.month-6) do
       details[:labels].unshift(Date::ABBR_MONTHNAMES[numMonths])
 
       prep = []

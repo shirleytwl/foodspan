@@ -8,49 +8,33 @@
 				</button>
 			</div>
 			<div class="modal-body">
-
 				<div class="row">
 					<div class="col-4">Ingredient</div>
 					<div class="col-4">Expiry Date</div>
 					<div class="col-4">Expiry In</div>
 				</div>
-
 				<% @ingredients.where(:stored=>false, :bought=>true).each_with_index do |ingredient,index| %>
-
 				<div class="row">
 					<div class="col-12">
-
-						<%= form_with scope: :ingredient, model: ingredient, url: add_groceries_storages_path(@ingredient), local: true do |form| %>
-
-
+						<%= form_with scope: :ingredient, model: ingredient, url: add_groceries_storages_path(@ingredient), local: true, :html => {:class => 'add-to-storage'} do |form| %>
 							<div class="row">
-
 								<div class="col-4"><%= ingredient.name %></div>
-
 								<div class="col-4">
 									<div class="form-group">
 										<%= form.text_field :expiry_date, class:"form-control add-grocery-storage-expiry-date",id:"add-grocery-storage-expiry-date-#{index}", :data => {:provide => "datepicker", :date_format => "yyyy-mm-dd"}%>
 								  </div>
 								</div>
-
 								<div class="col-4">
 									<div class="form-group">
 								    <input type="number" class="add-grocery-storage-expiry-days" id="add-grocery-storage-expiry-days-<%=index%>" value="0" class="form-control">
 								  </div>
 								</div>
-
 							</div>
-
 						<% end %>
-
-
-
-
 					</div>
 				</div>
-
 				<% end %>
-
+				<button type="button" id="addToStorageBtn" class="btn btn-primary">Add to Storage</button>
 			</div>
 		</div>
 	</div>

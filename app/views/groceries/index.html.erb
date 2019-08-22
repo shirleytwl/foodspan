@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-10">
-		<h2>Grocery List</h2>
+		<h2>Grocery List (<%= @ingredients.where(:stored => false).length %>)</h2>
 	</div>
 	<div class="col-2">
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#grocery-add">+</button>

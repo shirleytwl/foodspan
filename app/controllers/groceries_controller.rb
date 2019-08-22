@@ -1,6 +1,6 @@
 class GroceriesController < ApplicationController
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.where(:user => current_user)
   end
 
   def show
@@ -36,8 +36,8 @@ class GroceriesController < ApplicationController
     redirect_to groceries_path
   end
 
-  def add_groceries_storages
-    puts "editing"
+  def addgroceriesstorages
+    p "editing"
   end
 
   def updatebought

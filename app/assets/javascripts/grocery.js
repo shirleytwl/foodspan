@@ -18,6 +18,14 @@ window.onload = function() {
                 calculateExpiryFromDays(e.target.value,daysToDate);
             });
         })
+
+        let addToStorageBtn =$("#addToStorageBtn");
+        addToStorageBtn.on("click", function(e) {
+            let forms =$(".add-to-storage");
+            forms.each(function() {
+                $(this).submit();
+            })
+        })
     });
 
     let groceryItems = document.querySelectorAll("#grocery-table .grocery-item .grocery-edit-btn");

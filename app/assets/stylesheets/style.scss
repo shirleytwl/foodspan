@@ -1,14 +1,16 @@
 /* Colors */
 $green: #346102;
-$lgreen: #6C8E0E;
+$lgreen: rgba(111, 150, 55, 1);
 $red: #802E00;
-$lred: #be5d27;
-
+$lred: rgba(190, 94, 40, 1);
+$black: #333;
+$gray: #ccc;
 $mobile-size: "only screen and (max-width: 544px)";
 
 
 body {
 	font-family: 'Quicksand', sans-serif;
+	color: $black;
 }
 
 .content {
@@ -16,6 +18,9 @@ body {
 }
 .section {
 	margin: 4rem 0;
+	@media #{$mobile-size} {
+		margin: 2rem 0;
+	}
 }
 
 /* Navbar START */
@@ -187,6 +192,20 @@ body {
 	}
 }
 
+h1.title {
+	text-align: center;
+	font-weight: 400;
+	@media #{$mobile-size} {
+		font-size: 1.75rem
+	}
+}
+h2.sub-title {
+	font-weight: 400;
+	@media #{$mobile-size} {
+		font-size: 1.25rem;
+	}
+}
+
 .btn-primary {
 	background-color: $green;
 	border-color: $green;
@@ -225,4 +244,46 @@ body {
 }
 .storage-delete-btn i {
 	color: #9B5756;
+}
+
+
+/* Dashboard Stats */
+
+.doughnut {
+	margin-top: 4rem;
+	p {
+		font-size: 1.5rem;
+		span {
+			margin-top: 1rem;
+			font-size: 3.5rem;
+			font-weight: 300;
+		}
+	}
+	.wastage {
+		color: $lred;
+	}
+	.consumed {
+		color: $lgreen;
+	}
+	.doughnut-stats {
+		display: block;
+	}
+	@media #{$mobile-size} {
+		margin-top: 2rem;
+		p {
+			font-size: 1.15rem;
+			span {
+				margin-top: 1rem;
+				font-size: 1.5rem;
+				font-weight: 300;
+			}
+		}
+	}
+}
+
+/* Select tags */
+.form-control:focus {
+	outline: none;
+	box-shadow: none;
+	border: 1px solid $gray;
 }

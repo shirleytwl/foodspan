@@ -20,7 +20,9 @@ class DashboardsController < ApplicationController
   end
 
   def home
-
+    if user_signed_in?
+      redirect_to dashboards_path
+    end
   end
 
   ## search Storage
@@ -87,7 +89,7 @@ class DashboardsController < ApplicationController
       end
 
       p prep
-    
+
       details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
       details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
 

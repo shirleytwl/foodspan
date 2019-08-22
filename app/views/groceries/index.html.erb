@@ -16,7 +16,6 @@
 					<th scope="col">Quantity</th>
 					<th scope="col">Bought</th>
 					<th scope="col"></th>
-					<th scope="col"></th>
 				</tr>
 			</thread>
 			<tbody>
@@ -44,8 +43,10 @@
 
 			  			<% end %>
 			  		</td>
-		  			<td><button data-ingredient="<%= ingredient.id%>" class="grocery-edit-btn btn btn-primary">Edit</button></td>
-		  			<td><%= link_to 'Delete', delete_groceries_path(ingredient), :confirm => "Are you sure?", :method =>:delete %></td>
+						<td>
+							<a data-ingredient=<%= ingredient.id%> class="grocery-edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+							&nbsp;<%= link_to raw('  <i class="fa fa-trash" aria-hidden="true"></i>'), delete_groceries_path(ingredient), :method =>:delete %>
+						</td>
 	  			</tr>
   			<% end %>
 			</tbody>

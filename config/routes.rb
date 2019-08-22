@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   patch '/storage/:id/edit' => 'storages#update', as: 'update_storages'
   get '/storage/:id/editqty' => 'storages#editqty', as: 'edit_storages_qty'
   patch '/storage/:id/editqty' => 'storages#updateqty', as: 'update_storages_qty'
-  delete '/storage/:id' => 'storages#destroy', as: 'delete_storages'
+  patch '/storage/:id' => 'storages#destroy', as: 'remove_storages'
   get '/suggestion' => 'suggestions#index', as: 'suggestions'
 
 end

@@ -99,6 +99,7 @@ class StoragesController < ApplicationController
   def destroy
     @ingredient = Ingredient.find(params[:id])
     @ingredient.removed = true
+    @ingredient.update(ingredient_params)
     @ingredient.save
     redirect_to storages_path
   end

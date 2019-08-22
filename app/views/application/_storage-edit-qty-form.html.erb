@@ -1,23 +1,39 @@
-<%= form_with scope: :ingredient, model: @ingredient, url: update_storages_qty_path(@ingredient), local: true do |form| %>
-	<div class="row">
-		<div class="col-10">
-		  <p class="name"><%= @ingredient.name %></p>
-		  <p class="purchase_date">Purchase Date: <%= @ingredient.purchase_date %></p>
-		  <p class="purchase_date">Expiry Date: <%= @ingredient.expiry_date %></p>
+<div class="row">
+	<div class="col-12">
+	  <p class="name"><%= @ingredient.name %></p>
+	  <p class="purchase_date">Purchase Date: <%= @ingredient.purchase_date %></p>
+	  <p class="purchase_date">Expiry Date: <%= @ingredient.expiry_date %></p>
+	</div>
+	<div class="col-12">
+    <div>
+    	<p>Quantity Left:</p>
+    	<span id="edit-storage-quantity-display"><%=@ingredient.quantity_left%></span>/<%=@ingredient.quantity%> <%=@ingredient.unit%>
+    </div>
+    <%= form_with scope: :ingredient, model: @ingredient, url: update_storages_qty_path(@ingredient), local: true do |form| %>
+	    <%= form.range_field :quantity_left, :min=>0, :max=>@ingredient.quantity, :class=>"slide form-control-range", :id=>"edit-storage-quantity" %>
+	    <div class="text-center">
+				<%= form.submit 'Update Quantity', :class=>'btn btn-primary' %>
+			</div>
+		<% end %>
+		<div class="text-center">
+			<button id="storage-delete-btn" class="btn btn-outline-primary">Remove From Storage</button>
 		</div>
-		<div class="col-2">
-			<span id="storage-edit-btn">Edit</span>
-  		<%= link_to 'Delete', delete_storages_path(@ingredient), :method =>:delete %>
+		<div class="text-center">
+			<button id="storage-edit-btn" class="btn btn-outline-primary">Edit Ingredient</button>
 		</div>
-		<div class="col-12">
-		  <div class="form-group">
-		    <label for="quantity">Quantity left:</label>
-		    <div>
-		    	<span id="edit-storage-quantity-display"><%=@ingredient.quantity_left%></span>/<%=@ingredient.quantity%> <%=@ingredient.unit%>
-		    </div>
-		    <%= form.range_field :quantity_left, :min=>0, :max=>@ingredient.quantity, :class=>"slide", :id=>"edit-storage-quantity", :class=>"form-control-range" %>
-				<%= form.submit :class=>'btn btn-primary' %>
-		  </div>
-		</div>
+  </div>
+</div>
 
-<% end %>
+<div id="confirm-storage" class="text-center">
+	<h5>Confirm remove from storage?</h5>
+	<%= form_with scope: :ingredient, model: @ingredient, url: remove_storages_path(@ingredient), local: true do |form| %>
+					<%= form.number_field :quantity_left, :id=>"remove_storages", :class=>'d-none'%>
+					<p>Removing from storage will take the remaining quantity and keep track of the consumption/wastage you have made.</p>
+			    <div class="text-center">
+						<%= form.submit 'Confirm remove', :class=>'btn btn-outline-primary' %>
+					</div>
+				<% end %>
+</div>
+<div id="confirm-storage-overlay"></div>
+
+</div>

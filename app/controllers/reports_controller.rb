@@ -11,51 +11,50 @@ class ReportsController < ApplicationController
       case params[:duration]
       when 'year'
         p 'year'
-        tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.year && ingredient.updated_at < Date.today
+        tag.ingredients.where(user: current_user, removed: true).each do |ingredient|
+          if ingredient.updated_at >= Date.today - 1.year && ingredient.updated_at.to_date <= Date.today
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             data[:tag] = tag
+            p ingredient
           end
         end
       when 'quarter'
         p 'quarter'
-        tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 3.month && ingredient.updated_at < Date.today
+        tag.ingredients.where(user: current_user, removed: true).each do |ingredient|
+          if ingredient.updated_at >= Date.today - 3.month && ingredient.updated_at.to_date <= Date.today
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             data[:tag] = tag
           end
         end
       when 'month'
         p 'month'
-        tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.month && ingredient.updated_at < Date.today
+        tag.ingredients.where(user: current_user, removed: true).each do |ingredient|
+          if ingredient.updated_at >= Date.today - 1.month && ingredient.updated_at.to_date <= Date.today
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             data[:tag] = tag
           end
         end
       when 'week'
         p 'week'
-        tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.week && ingredient.updated_at < Date.today
+        tag.ingredients.where(user: current_user, removed: true).each do |ingredient|
+          if ingredient.updated_at >= Date.today - 1.week && ingredient.updated_at.to_date <= Date.today
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             data[:tag] = tag
           end
         end
       when 'day'
         p 'day'
-        tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.day && ingredient.updated_at < Date.today
+        tag.ingredients.where(user: current_user, removed: true).each do |ingredient|
+          if ingredient.updated_at >= Date.today - 1.day && ingredient.updated_at.to_date <= Date.today
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             data[:tag] = tag
           end
         end
       else
         p 'all'
-        tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true
+        tag.ingredients.where(user: current_user, removed: true).each do |ingredient|
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             data[:tag] = tag
-          end
         end
       end
 
@@ -76,29 +75,30 @@ class ReportsController < ApplicationController
   end
 
   def show
-    tag=Tag.find(params[:id])
-
-    @data=scatterChart(tag)
+    @ingredients = Tag.find(params[:id]).ingredients.where(user: current_user, removed: true)
+    @data= scatterChart(@ingredients)
     @options = scatterOptions
 
   end
 
-  private def scatterChart (tag)
+  #Scatter Chart Options & data
+  private def scatterChart (ingredients)
     details={:datasets => []}
 
-    tag.ingredients.each do |ingredient|
-      data = {:label => ingredient.name, :borderColor=> '', :backgroundColor => '', :data => [{:x => ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2)}]}
-      data[:data].first[:y] = 100.0 - data[:data].first[:x]
+    ingredients.each do |ingredient|
+        data = {:label => ingredient.name, :borderColor=> '', :backgroundColor => '', :data => [{:x => ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2)}]}
+        data[:data].first[:y] = 100.0 - data[:data].first[:x]
 
-      if data[:data].first[:x] > 20
-        data[:borderColor] = '#346102'
-        data[:backgroundColor] = 'rgba(111, 150, 55, 1)'
-      else
-        data[:borderColor] = '#802E00'
-        data[:backgroundColor] = 'rgba(190, 94, 40, 1)'
-      end
+        if data[:data].first[:x] > 20
+          data[:borderColor] = '#346102'
+          data[:backgroundColor] = 'rgba(111, 150, 55, 1)'
+        else
+          data[:borderColor] = '#802E00'
+          data[:backgroundColor] = 'rgba(190, 94, 40, 1)'
+        end
 
-      details[:datasets].push(data)
+        details[:datasets].push(data)
+
     end
     return details
   end
@@ -117,12 +117,22 @@ class ReportsController < ApplicationController
           :scaleLabel => {
             :display => true,
             :labelString => "Food Waste(%)"
+          },
+          :ticks => {
+                max: 100,
+                min: 0,
+                stepSize: 10
           }
         }],
         :xAxes => [{
           :scaleLabel => {
             :display => true,
             :labelString => "Food Consumed(%)"
+          },
+          :ticks => {
+                max: 100,
+                min: 0,
+                stepSize: 10
           }
         }]
       },

@@ -1,1 +1,41 @@
 <%= scatter_chart @data, @options %>
+
+
+<div class="md-form mt-0 row">
+  <input class="form-control col-6 offset-3" id="report-search" type="text" placeholder="Search" aria-label="Search">
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<table class="table" >
+			<thread>
+				<tr>
+					<th scope="col">Ingredient</th>
+					<th scope="col">Wasted</th>
+					<th scope="col">Consumed</th>
+				</tr>
+			</thread>
+			<tbody id='report-table'>
+				<% @ingredients.each do |ingredient| %>
+					<tr>
+			  		<td><%= ingredient.name %></td>
+			  		<td><%= ingredient.quantity_left %> <%= ingredient.unit %> (<%= ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2) %>%)</td>
+			  		<td><%= ingredient.quantity - ingredient.quantity_left %> <%= ingredient.unit %> (<%= 100 - ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2) %>%)</td>
+					</tr>
+  		<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#report-search").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+    $("#report-table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+  });
+});
+</script>

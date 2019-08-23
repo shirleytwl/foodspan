@@ -101,3 +101,12 @@ window.onload = function() {
         displayResult.datepicker('update', new Date(expireDate));
     }
 }
+
+$(document).ready(function(){
+    $("#storage-search").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+      $("#storage-table-body tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+    });
+  });

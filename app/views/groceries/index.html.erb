@@ -12,7 +12,7 @@
 
 <div class="row section">
 	<div class="col-12 offset-0 col-md-10 offset-md-1 text-center p-0">
-		<input type="text" placeholder="Search" class="form-control">
+		<input type="text" id="grocery-search" placeholder="Search" class="form-control">
 		<button id="storage-search-btn" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 	</div>
 </div>
@@ -27,38 +27,37 @@
 		  	<div class="col-12 col-md-10 offset-md-1">
 		  		<% @ingredients.where(:stored => false).each do |ingredient| %>
 		  			<div class="card grocery-card">
-						  <div class="card-body">
-						  	<div class="row">
-						  		<div class="col-8">
-					  				<h2 class="sub-title"><%= ingredient.name%></h2>
-					  				<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
-					  				<button data-ingredient="<%= ingredient.id%>" class="btn btn-outline-primary grocery-edit-btn">Edit ingredient</button>
+					  <div class="card-body">
+					  	<div class="row">
+					  		<div class="col-8">
+				  				<h2 class="sub-title"><%= ingredient.name%></h2>
+				  				<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
+				  				<button data-ingredient="<%= ingredient.id%>" class="btn btn-outline-primary grocery-edit-btn">Edit ingredient</button>
 
-					  			</div>
-					  			<div class="col-4 d-flex flex-column align-items-end justify-content-between">
-					  				<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
-						  				<% if ingredient.bought %>
-												<label>
-													<div class="box">
-														<%= form.check_box :bought, class: "check_box",:checked => true %>
-														<span class="check"></span>
-													</div>
-												</label>
-					  					<% else %>
-												<label>
-													<div class="box">
-														<%= form.check_box :bought, class: "check_box" %>
-														<span class="check"></span>
-													</div>
-												</label>
-						  				<% end %>
+				  			</div>
+				  			<div class="col-4 d-flex flex-column align-items-end justify-content-between">
+				  				<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
+					  				<% if ingredient.bought %>
+											<label>
+												<div class="box">
+													<%= form.check_box :bought, class: "check_box",:checked => true %>
+													<span class="check"></span>
+												</div>
+											</label>
+				  					<% else %>
+											<label>
+												<div class="box">
+													<%= form.check_box :bought, class: "check_box" %>
+													<span class="check"></span>
+												</div>
+											</label>
 					  				<% end %>
-					  				<%= link_to raw('<i class="fa fa-trash mr-1 d-block" aria-hidden="true"></i>'), delete_groceries_path(ingredient),:class=>"d-block text-right", :method =>:delete %>
-					  			</div>
-						  	</div>
-						  </div>
-						</div>
-
+				  				<% end %>
+				  				<%= link_to raw('<i class="fa fa-trash mr-1 d-block" aria-hidden="true"></i>'), delete_groceries_path(ingredient),:class=>"d-block text-right", :method =>:delete %>
+				  			</div>
+					  	</div>
+					  </div>
+					</div>
 		  		<% end %>
 		  	</div>
 	  	<% end %>

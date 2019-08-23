@@ -43,3 +43,12 @@ function calculateExpiryFromDays (expireDays, displayResult){
     expireDate.setDate(expireDate.getDate() + parseInt(expireDays));
     displayResult.datepicker('update', new Date(expireDate));
 }
+
+$(document).ready(function(){
+    $("#grocery-search").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+      $("#grocery-table-body tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+    });
+  });

@@ -4,6 +4,7 @@ $lgreen: rgba(111, 150, 55, 1);
 $red: #802E00;
 $lred: rgba(190, 94, 40, 1);
 $black: #333;
+$white: #fff;
 $gray: #ccc;
 $mobile-size: "only screen and (max-width: 544px)";
 
@@ -25,7 +26,6 @@ body {
 
 /* Navbar START */
 .navbar {
-	background-color: #eee;
 	height:56px;
 
 	#navbarNav {
@@ -59,7 +59,9 @@ body {
 			margin: 0;
 		}
 	}
-
+}
+.bg-light {
+	background-color: #efefef!important;
 }
 
 #collapsibleNavbar {
@@ -75,6 +77,9 @@ body {
 	z-index: 1000;
 	transition: .5s;
 	box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+	@media #{$mobile-size} {
+		width: 240px;
+	}
 }
 #collapsibleNavbar.show {
 	right:0;
@@ -195,17 +200,29 @@ body {
 h1.title {
 	text-align: center;
 	font-weight: 400;
+  letter-spacing: 0.1rem;
 	@media #{$mobile-size} {
 		font-size: 1.75rem
 	}
 }
 h2.sub-title {
-	font-weight: 400;
+	font-weight: 500;
+  letter-spacing: 0.1rem;
 	@media #{$mobile-size} {
 		font-size: 1.25rem;
 	}
 }
+h3.sub-title {
+	font-weight: 500;
+  letter-spacing: 0.1rem;
+	@media #{$mobile-size} {
+		font-size: 1rem;
+	}
+}
 
+button:focus {
+	outline: none;
+}
 .btn-primary {
 	background-color: $green;
 	border-color: $green;
@@ -237,15 +254,6 @@ h2.sub-title {
 	background-color: #FFF;
 	box-shadow:none;
 }
-
-.storage-edit-btn i {
-	color: $green;
-	margin-right: 1rem;
-}
-.storage-delete-btn i {
-	color: #9B5756;
-}
-
 
 /* Dashboard Stats */
 
@@ -310,6 +318,7 @@ h2.sub-title {
 
 .login-text {
 	font-size: 1.3rem;
+	letter-spacing: 0.1rem;
 	@media #{$mobile-size} {
 		font-size: 0.9rem;
 	}
@@ -354,6 +363,7 @@ h2.sub-title {
 
 .register-text {
 	font-size: 1.3rem;
+	letter-spacing: 0.1rem;
 	@media #{$mobile-size} {
 		font-size: 0.9rem;
 	}
@@ -487,6 +497,50 @@ h2.sub-title {
 
 /* Report Progress Bar END */
 
+/* Storage START */
+.storage-edit-btn i {
+	color: $green;
+	margin-right: 1rem;
+}
+.storage-delete-btn i {
+	color: #9B5756;
+}
+#storage-add-btn,
+.storage-edit-btn,
+.storage-add-submit-btn,
+#storage-delete-btn,
+#storage-edit-btn {
+	padding: 0.375rem 1rem;
+}
+#storage-delete-btn,
+#storage-edit-btn {
+	display: block;
+	margin: 0 auto;
+}
+.storage-add-submit-btn  {
+	display: block;
+	margin: 2rem auto;
+}
+#storage-search-btn {
+	position: absolute;
+  top: 0;
+  right: 0;
+  transition: 0.3s;
+}
+
+#storage-search-btn:hover,
+#storage-search-btn:not(:disabled):not(.disabled):active,
+#storage-search-btn:not(:disabled):not(.disabled):focus,
+#storage-search-btn:not(:disabled):not(.disabled):active:focus{
+	box-shadow:none;
+}
+#storage-search-btn:hover {
+	opacity: 0.5;
+}
+
+/* Storage END */
+
+
 /* Edit Storage Form START */
 #edit-storage-quantity {
 	margin: 2rem 0;
@@ -503,23 +557,125 @@ h2.sub-title {
 	border: 0;
   border-radius: 20px;
 }
+.modal-header .close {
+	font-weight: 400;
+	font-size: 1.5rem;
+}
 /* Modal END */
+
+/* General Form START */
+form {
+	letter-spacing: 0.1rem;
+	input {
+		letter-spacing: 0.1rem;
+	}
+}
+/* General Form END */
+
+.storage-card {
+	margin-bottom: 2rem;
+	border-radius: 20px;
+	p, button {
+		font-size: 0.875rem;
+	}
+	b {
+		font-weight: 600;
+	}
+}
+.fresh {
+	color: $green;
+	font-weight: 500;
+	text-align: center;
+	p {
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+	}
+	.expiring-days {
+		background-color: $green;
+		color: $white;
+	}
+}
+.expired {
+	color: $red;
+	font-weight: 500;
+	text-align: center;
+	p {
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+	}
+	.expiring-days {
+		background-color: $red;
+		color: $white;
+	}
+}
+.expiring-days {
+	display: flex;
+	align-items:center;
+	justify-content: center;
+	position: relative;
+	text-align: center;
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+	line-height: 1.2;
+  margin: 0 auto;
+	.days {
+		font-size: 1.5rem;
+		font-weight: 300;
+		display: block;
+	}
+}
+/* General Form END */
+
+/* Tokenfield START*/
+.tokenfield .token {
+	border-radius: 20px!important;
+  background: transparent!important;
+  border: 1px solid #346102!important;
+  height: auto!important;
+  padding: 0 0 0 4px!important;
+  margin: 0 8px 8px 0!important;
+}
+.tokenfield.focus {
+	border-color: #ced4da!important;
+  outline: none!important;
+  box-shadow: none!important;
+}
+.tokenfield .token .close {
+	font-family: 'Quicksand', sans-serif!important;
+  font-size: 1.5em!important;
+  font-weight: 400!important;
+  line-height: .875!important;
+}
+
+/* Tokenfield END*/
 
 #confirm-storage {
 	display: none;
+	transform: translate(0, -50px);
+	opacity: 0;
 	border: 0;
   border-radius: 0.3rem;
   outline: 0;
-  padding: 1rem;
+  padding: 2rem 1rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   background-color: white;
   border-radius: 20px;
-  border: 1px solid black;
   width: 75%;
   z-index: 1;
+  margin-top: -50px;
+  form p {
+  	padding-top:1rem;
+  }
+	@media #{$mobile-size} {
+  	width: 90%;
+  	form p {
+  		font-size: 0.875rem;
+  	}
+	}
 }
 #confirm-storage-overlay {
 	display: none;
@@ -532,4 +688,74 @@ h2.sub-title {
   box-sizing: content-box;
   background-color: rgba(0,0,0,0.5);
   border-radius: 20px;
+  transition: 0.3s;
 }
+#confirm-storage.show {
+	display: block;
+}
+#confirm-storage-overlay.show {
+	display: block;
+}
+
+#edit-storage-quantity-display {
+	text-align: center;
+	letter-spacing: 0.1rem;
+	b {
+		font-weight: 500;
+	}
+}
+.purchase_date,
+.expiry_date {
+	font-size: 0.875rem;
+}
+
+/* Range Slider START */
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: $gray;
+}
+input[type=range]::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: $black;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $gray;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: $gray;
+}
+input[type=range]::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: $black;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* Range Slider END */

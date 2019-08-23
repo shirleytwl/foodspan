@@ -121,7 +121,7 @@ class DashboardsController < ApplicationController
   ## column_chart data + options
 
   private def barChart(tags)
-    details = {:labels => [], :datasets => [{:label => 'Wastage', :type => 'line', :borderColor => '#666666', :data => [], :fill => false}, {:label => 'Wastage', :type => 'bar', :backgroundColor => 'rgba(93, 121, 145, 1)', :backgroundColorHover => "rgba(93, 121, 145, 0.8)", :data => []}]}
+    details = {:labels => [], :datasets => [{:label => 'Wastage', :type => 'line', :borderColor => '#333', :borderWidth=> 2, :data => [], :fill => false}, {:label => 'Wastage', :type => 'bar', :backgroundColor => 'rgba(190, 94, 40, 1)', :backgroundColorHover => "rgba(93, 121, 145, 0.8)", :data => []}]}
 
     numMonths = Date.today.month
 
@@ -159,6 +159,31 @@ class DashboardsController < ApplicationController
       :height => 300,
       :legend => {
             :display => false
+      },
+      :scales => {
+        :yAxes => [{
+          :scaleLabel => {
+            :display => true,
+            :labelString => "Total Food Waste(%)",
+            :fontSize =>"15",
+            :fontColor => "#333",
+            :padding => "-3"
+          },
+          :ticks => {
+                :max => 100,
+                :min => 0,
+                :stepSize => 10,
+                :fontFamily => "'Quicksand', sans-serif",
+                :fontColor => "#333"
+          }
+        }],
+        :xAxes => [{
+          :ticks => {
+                :fontFamily => "'Quicksand', sans-serif",
+                :fontColor => "#333",
+                :fontSize => "15"
+          }
+        }]
       }
     }
   end

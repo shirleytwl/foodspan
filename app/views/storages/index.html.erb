@@ -17,56 +17,62 @@
 <div class="row">
 	<div class="col-12">
 		<div class="row">
-	  	<% 	@ingredients.each do |ingredient|  %>
-		  	<div class="col-12 col-md-10 offset-md-1">
-		  		<%
-		    		start_date = Date.today
-		    		end_date = ingredient.expiry_date
-		    		days_remaining = (end_date - start_date).to_i
-		    	%>
-		  		<div class="card storage-card">
-					  <div class="card-body">
-					  	<div class="row">
-					  		<div class="col-8">
-					    		<h2 class="sub-title"><%= ingredient.name%></h2>
-				      		<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
-					    		<button class="storage-edit-btn btn btn-outline-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
-					    	</div>
-					    	<div class="col-4">
-					    		<% if days_remaining >= 0 %>
-					      		<div class="fresh">
-					      			<p>Expires in</p>
-					      			<div class="expiring-days">
-					      				<p><span class="days"><%= days_remaining%></span> Days</p>
-					      			</div>
-					      		</div>
-					      	<% else %>
-					      		<div class="expired">
-					      			<p>Expired</p>
-					      			<div class="expiring-days">
-					      				<p><span class="days"><%= days_remaining*-1%></span> Days ago</p>
-					      			</div>
-					      		</div>
-					    		<% end %>
-					    	</div>
-					    	<!-- <div class="col-2">
-					    		<button class="storage-edit-btn btn btn-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
-					    	</div>
-					    	<div class="col-md-3">
-				      		<p><%= ingredient.quantity_left%>/<%= ingredient.quantity%> <%= ingredient.unit%> remaining</p>
-				      	</div>
-				      	<div class="col-md-3">
-					      	<% if days_remaining >= 0 %>
-					      		<p class="fresh">Expiring in <%= days_remaining%> Days</p>
-					      	<% else %>
-					      		<p class="expired">Expired <%= days_remaining*-1%> Days ago</p>
-					    		<% end %>
-					    	</div> -->
-					    </div>
-					  </div>
-					</div>
-	    	</div>
-			<%end%>
+			<% if @ingredients.size == 0 %>
+	  	<div class="col-12 col-md-10 offset-md-1">
+	  		<h3 class="sub-title text-center">There is no storage record found.</h3>
+	  	</div>
+	  	<% else %>
+		  	<% 	@ingredients.each do |ingredient|  %>
+			  	<div class="col-12 col-md-10 offset-md-1">
+			  		<%
+			    		start_date = Date.today
+			    		end_date = ingredient.expiry_date
+			    		days_remaining = (end_date - start_date).to_i
+			    	%>
+			  		<div class="card storage-card">
+						  <div class="card-body">
+						  	<div class="row">
+						  		<div class="col-8">
+						    		<h2 class="sub-title"><%= ingredient.name%></h2>
+					      		<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
+						    		<button class="storage-edit-btn btn btn-outline-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
+						    	</div>
+						    	<div class="col-4">
+						    		<% if days_remaining >= 0 %>
+						      		<div class="fresh">
+						      			<p>Expires in</p>
+						      			<div class="expiring-days">
+						      				<p><span class="days"><%= days_remaining%></span> Days</p>
+						      			</div>
+						      		</div>
+						      	<% else %>
+						      		<div class="expired">
+						      			<p>Expired</p>
+						      			<div class="expiring-days">
+						      				<p><span class="days"><%= days_remaining*-1%></span> Days ago</p>
+						      			</div>
+						      		</div>
+						    		<% end %>
+						    	</div>
+						    	<!-- <div class="col-2">
+						    		<button class="storage-edit-btn btn btn-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
+						    	</div>
+						    	<div class="col-md-3">
+					      		<p><%= ingredient.quantity_left%>/<%= ingredient.quantity%> <%= ingredient.unit%> remaining</p>
+					      	</div>
+					      	<div class="col-md-3">
+						      	<% if days_remaining >= 0 %>
+						      		<p class="fresh">Expiring in <%= days_remaining%> Days</p>
+						      	<% else %>
+						      		<p class="expired">Expired <%= days_remaining*-1%> Days ago</p>
+						    		<% end %>
+						    	</div> -->
+						    </div>
+						  </div>
+						</div>
+		    	</div>
+				<% end %>
+			<% end %>
   	</div>
 	</div>
 </div>

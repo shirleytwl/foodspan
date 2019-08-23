@@ -25,7 +25,7 @@ window.onload = function() {
         $('#storage-qty-edit').modal('show');
         $('#storage-qty-edit .modal-body').load("/storage/"+ingredientId+"/editqty", function() {
             let editStorageQuantity = $("#edit-storage-quantity");
-            let editStorageQuantityDisplay = $("#edit-storage-quantity-display");
+            let editStorageQuantityDisplay = $("#edit-storage-quantity-display span");
             let editStorageBtn = $("#storage-edit-btn");
             let deleteStorageBtn = $("#storage-delete-btn");
             let deleteStorageModal = $("#confirm-storage");
@@ -51,12 +51,29 @@ window.onload = function() {
                 });
             })
             deleteStorageBtn.on("click",function(e){
-                deleteStorageModal.fadeIn();
-                deleteStorageModalOverlay.fadeIn();
+                deleteStorageModal.addClass("show");
+                deleteStorageModal.animate({
+                    opacity: 1,
+                    marginTop: '0'
+                  }, 300);
+
+                deleteStorageModalOverlay.addClass("show");
+                deleteStorageModalOverlay.animate({
+                    opacity: 1,
+                  }, 300);
             })
             deleteStorageModalOverlay.on("click",function(e){
-                deleteStorageModal.fadeOut();
-                deleteStorageModalOverlay.fadeOut();
+                deleteStorageModal.animate({
+                    opacity: 0,
+                    marginTop: '-50px'
+                  }, 400, function(){
+                    deleteStorageModal.removeClass("show");
+                  });
+                deleteStorageModalOverlay.animate({
+                    opacity: 0,
+                  }, 400, function(){
+                    deleteStorageModalOverlay.removeClass("show");
+                  });
             })
 
         });
@@ -66,29 +83,6 @@ window.onload = function() {
     });
 
     $("#add-storage-tags").tokenfield();
-
-    // $.ajax({
-    //     type: "GET",
-    //     dataType: "json",
-    //     url: "/storage",
-    //     success: function(data){
-
-    //         var tagArray = [];
-
-    //         data.forEach(function(tag){
-    //             tagArray.push(tag.name)
-    //         })
-
-    //         $('#add-storage-tags').tokenfield({
-    //             autocomplete: {
-    //               source: tagArray,
-    //               delay: 100
-    //             },
-    //             showAutocompleteOnFocus: true
-    //           })
-    //     }
-    // });
-
 
     function calculateExpiryFromDate (expireDate, displayResult){
         let difference = Math.floor((new Date(expireDate).setHours(0,0,0,0)-new Date().setHours(0,0,0,0)) / (1000*60*60*24));

@@ -533,7 +533,9 @@ form.edit_ingredient {
 #storage-search-btn:hover {
 	opacity: 0.5;
 }
-
+#storage-search {
+	border-radius: 20px;
+}
 /* Storage END */
 
 
@@ -564,7 +566,9 @@ form.edit_ingredient {
 	padding: 0.375rem 1rem;
 }
 
-
+#grocery-search {
+	border-radius: 20px;
+}
 /* Grocery END */
 
 /* Modal START */

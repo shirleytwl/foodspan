@@ -17,7 +17,7 @@ window.onload = function() {
         calculateExpiryFromDays(e.target.value,addStorageExpiryDate)
     });
 
-    let storageItems = document.querySelectorAll("#storage-table .storage-item .storage-edit-btn");
+    let storageItems = document.querySelectorAll(".storage-edit-btn");
 
     storageItems.forEach(function(item) {
       item.addEventListener("click",function(event){

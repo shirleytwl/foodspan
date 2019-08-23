@@ -4,6 +4,7 @@ $lgreen: rgba(111, 150, 55, 1);
 $red: #802E00;
 $lred: rgba(190, 94, 40, 1);
 $black: #333;
+$white: #fff;
 $gray: #ccc;
 $mobile-size: "only screen and (max-width: 544px)";
 
@@ -25,7 +26,6 @@ body {
 
 /* Navbar START */
 .navbar {
-	background-color: #eee;
 	height:56px;
 
 	#navbarNav {
@@ -59,7 +59,9 @@ body {
 			margin: 0;
 		}
 	}
-
+}
+.bg-light {
+	background-color: #efefef!important;
 }
 
 #collapsibleNavbar {
@@ -75,6 +77,9 @@ body {
 	z-index: 1000;
 	transition: .5s;
 	box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+	@media #{$mobile-size} {
+		width: 240px;
+	}
 }
 #collapsibleNavbar.show {
 	right:0;
@@ -237,15 +242,6 @@ h2.sub-title {
 	background-color: #FFF;
 	box-shadow:none;
 }
-
-.storage-edit-btn i {
-	color: $green;
-	margin-right: 1rem;
-}
-.storage-delete-btn i {
-	color: #9B5756;
-}
-
 
 /* Dashboard Stats */
 
@@ -487,6 +483,38 @@ h2.sub-title {
 
 /* Report Progress Bar END */
 
+/* Storage START */
+.storage-edit-btn i {
+	color: $green;
+	margin-right: 1rem;
+}
+.storage-delete-btn i {
+	color: #9B5756;
+}
+#storage-search-btn {
+	position: absolute;
+  top: 0;
+  right: 0;
+  transition: 0.3s;
+}
+
+#storage-search-btn:hover,
+#storage-search-btn:not(:disabled):not(.disabled):active,
+#storage-search-btn:not(:disabled):not(.disabled):focus,
+#storage-search-btn:not(:disabled):not(.disabled):active:focus{
+	box-shadow:none;
+}
+#storage-search-btn:hover {
+	opacity: 0.5;
+}
+
+// #storage-add-btn {
+// 	width: 40px;
+// 	height: 40px;
+// }
+/* Storage END */
+
+
 /* Edit Storage Form START */
 #edit-storage-quantity {
 	margin: 2rem 0;
@@ -504,6 +532,77 @@ h2.sub-title {
   border-radius: 20px;
 }
 /* Modal END */
+
+/* Table START */
+// .table  {
+// 	thead {
+// 		background-color: $black;
+// 		color: $white;
+// 		border-radius: 20px;
+// 		th {
+// 			border-bottom: 0;
+// 			font-weight: 400;
+// 		}
+// 	}
+// 	td {
+// 		.fresh {
+// 			color: $green;
+// 		}
+// 		.expired {
+// 			color: $red;
+// 			font-weight: 500;
+// 		}
+// 	}
+// }
+/* Table END */
+.storage-card {
+	margin-bottom: 2rem;
+	border-radius: 20px;
+	p, button {
+		font-size: 0.875rem;
+	}
+	.fresh {
+		color: $green;
+		font-weight: 500;
+		text-align: center;
+		p {
+			margin-bottom: 0.5rem;
+		}
+		.expiring-days {
+			background-color: $green;
+			color: $white;
+		}
+	}
+	.expired {
+		color: $red;
+		font-weight: 500;
+		text-align: center;
+		p {
+			margin-bottom: 0.5rem;
+		}
+		.expiring-days {
+			background-color: $red;
+			color: $white;
+		}
+	}
+	.expiring-days {
+		display: flex;
+		align-items:center;
+		justify-content: center;
+		position: relative;
+		text-align: center;
+		border-radius: 50%;
+		height: 80px;
+		width: 80px;
+		line-height: 1.2;
+    margin: 0 auto;
+		.days {
+			font-size: 1.5rem;
+			font-weight: 300;
+			display: block;
+		}
+	}
+}
 
 #confirm-storage {
 	display: none;

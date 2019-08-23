@@ -21,6 +21,7 @@
 			<div class="row section">
 				<div class="col-12">
 					<h2 class="sub-title"><%= detail[:tag_name] %></h2>
+					<%= link_to 'more', report_path(detail[:tag]) %>
 					<div class="progress">
 				 		<div class="progress-bar" id="consumed-bar" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>
 				  	<div class="progress-bar" id="waste-bar" role="progressbar" style="width: <%= detail[:waste] %>%" aria-valuenow=<%= detail[:waste]%> aria-valuemin="0" aria-valuemax="100"></div>

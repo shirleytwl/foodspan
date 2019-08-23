@@ -7,6 +7,12 @@
 	</div>
 </div>
 
+<div class="md-form mt-0 row">
+  <input class="form-control col-6 offset-3" id="grocery-search" type="text" placeholder="Search" aria-label="Search">
+</div>
+
+
+
 <div class="row">
 	<div class="col-12">
 		<table id="grocery-table" class="table">
@@ -18,7 +24,7 @@
 					<th scope="col"></th>
 				</tr>
 			</thread>
-			<tbody>
+			<tbody id="grocery-table-body">
 				<% @ingredients.where(:stored => false).each do |ingredient| %>
 					<tr class="grocery-item">
 			  		<td><%= ingredient.name %></td>

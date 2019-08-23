@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails. /routing.html
   root 'dashboards#home'
   get '/reports' => 'reports#index', as: 'reports'
+  get '/reports/:id' => 'reports#show', as: 'report'
   get '/dashboards' => 'dashboards#index', as: 'dashboards'
 
   get '/grocery' => 'groceries#index', as: 'groceries'

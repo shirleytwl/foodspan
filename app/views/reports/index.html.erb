@@ -1,5 +1,5 @@
 <div class="row section">
-	<div class="col-12">
+	<div class="col-12 p-0">
 		<h1 class="title">Food Report</h1>
 	</div>
 </div>
@@ -16,10 +16,10 @@
 </div>
 
 <div class="row section">
-	<div class="col-12">
+	<div class="col-12 p-0">
 		<% @details.each do |detail| %>
 			<div class="row section">
-				<div class="col-12">
+				<div class="col-12 p-0">
 					<h2 class="sub-title"><%= detail[:tag_name] %></h2>
 					<div class="progress">
 				 		<div class="progress-bar" id="consumed-bar" role="progressbar" style="width: <%= detail[:consumed] %>%" aria-valuenow=<%= detail[:consumed]%> aria-valuemin="0" aria-valuemax="100"></div>

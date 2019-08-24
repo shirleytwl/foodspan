@@ -5,7 +5,7 @@
 </div>
 <div class="row section">
 	<div class="col-6 col-md-6">
-		<h2 class="sub-title">Food Report</h2>
+		<h2 class="sub-title food-report">Food Report</h2>
 	</div>
 	<div class="col-6">
 		<%= form_with url: dashboards_path, method: :get, skip_enforcing_utf8: true do %>
@@ -30,67 +30,133 @@
 
 <div class="row section">
 	<div class="col-12">
+		<h3 class="sub-title months-average">6 Months Average</h3>
+	</div>
+	<div class="col-12">
 		<%= bar_chart @bar, @barOpt %>
 	</div>
 </div>
 
 <div class="row section">
-	<div class="col-12">
-		<h2 class="sub-title mb-5"> Storage Items (<%= @noInStorage %>)</h2>
-		<%= link_to 'Storage Page', storages_path %>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Ingredient</th>
-					<th scope="col">Quantity Left</th>
-					<th scope="col">Expiring In</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @storageItems.each do |ingredient| %>
-				<tr>
-					<td><%= ingredient.name %></td>
-					<td><%= ingredient.quantity_left %> <%= ingredient.unit %></td>
-					<td><%= ingredient.expiry_date.mjd - Date.today.mjd  %> Days</td>
-				</tr>
-				<% end %>
-
-			</tbody>
-		</table>
+	<div class="col-12 col-md-10 offset-md-1 dashboard-title">
+		<h2 class="sub-title"> Storage Items </h2>
+		<div>
+			<%= link_to raw('<span>Show all <i class="fa fa-angle-right" aria-hidden="true"></i></span>'), storages_path %>
+		</div>
 	</div>
-</div>
-
+	<% if @storageItems.size == 0 %>
+	  	<div class="col-12 col-md-10 offset-md-1 dashboard-storage">
+	  		<h3 class="sub-title text-center">There is no storage record found.</h3>
+	  	</div>
+	<% else %>
+		<% 	@storageItems.each do |ingredient|  %>
+			<div class="col-12 col-md-10 offset-md-1 dashboard-storage">
+				<%
+					start_date = Date.today
+					end_date = ingredient.expiry_date
+					days_remaining = (end_date - start_date).to_i
+				%>
+				<div class="card storage-card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-8 card-body-storage-text">
+								<h2 class="sub-title"><%= ingredient.name%></h2>
+								<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
+							</div>
+							<div class="col-4">
+								<% if days_remaining >= 0 %>
+									<div class="fresh">
+										<p>Expires in</p>
+										<div class="expiring-days">
+											<p><span class="days"><%= days_remaining%></span> Days</p>
+										</div>
+									</div>
+								<% else %>
+									<div class="expired">
+										<p>Expired</p>
+										<div class="expiring-days">
+											<p><span class="days"><%= days_remaining*-1%></span> Days ago</p>
+										</div>
+									</div>
+								<% end %>
+							</div>
+							<!-- <div class="col-2">
+								<button class="storage-edit-btn btn btn-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
+							</div>
+							<div class="col-md-3">
+								<p><%= ingredient.quantity_left%>/<%= ingredient.quantity%> <%= ingredient.unit%> remaining</p>
+							</div>
+							<div class="col-md-3">
+								<% if days_remaining >= 0 %>
+									<p class="fresh">Expiring in <%= days_remaining%> Days</p>
+								<% else %>
+									<p class="expired">Expired <%= days_remaining*-1%> Days ago</p>
+								<% end %>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
 
 <div class="row section">
-	<div class="col-12">
-		<h2 class="sub-title mb-5"> Grocery Items (<%= @noInGrocery %>)</h2>
-		<%= link_to 'Grocery Page', groceries_path %>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Ingredient</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Bought</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @groceryItems.each do |ingredient| %>
-				<tr>
-					<td><%= ingredient.name %></td>
-					<td><%= ingredient.quantity %> <%= ingredient.unit %></td>
-					<td>
-						<div class="form-check">
-							<% if ingredient.bought %>
-								<input class="form-check-input" type="checkbox" value="" id=<%= ingredient.id %> checked disabled>
-							<% else %>
-								<input class="form-check-input" type="checkbox" value="" id=<%= ingredient.id %> disabled>
-							<% end %>
-						</div>
-					</td>
-				</tr>
-				<% end %>
-
-			</tbody>
-		</table>
+	<div class="col-12 col-md-10 offset-md-1 dashboard-title">
+			<h2 class="sub-title"> Grocery Items </h2>
+			<div>
+				<%= link_to raw('<span>Show all <i class="fa fa-angle-right" aria-hidden="true"></i></span>'), groceries_path %>
+			</div>
 	</div>
-</div>
+
+	<% if @groceryItems.size == 0 %>
+			<div class="col-12 col-md-10 offset-md-1 dashboard-grocery">
+					<h3 class="sub-title text-center">There is no storage record found.</h3>
+			</div>
+	<% else %>
+				<% @groceryItems.where(:stored => false).each do |ingredient| %>
+				<div class="col-12 col-md-10 offset-md-1 dashboard-grocery">
+					<div class="card grocery-card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-8 card-body-grocery-text">
+									<h2 class="sub-title"><%= ingredient.name%></h2>
+									<p><b><%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
+								</div>
+
+								<div class="col-4 d-flex flex-column align-items-end justify-content-between">
+									<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
+										<% if ingredient.bought %>
+											<label>
+												<div class="box">
+													<%= form.check_box :bought, class: "check_box",:checked => true %>
+													<span class="check"></span>
+												</div>
+											</label>
+										<% else %>
+											<label>
+												<div class="box">
+													<%= form.check_box :bought, class: "check_box" %>
+													<span class="check"></span>
+												</div>
+											</label>
+										<% end %>
+									<% end %>
+									<%= link_to raw('<i class="fa fa-trash mr-1 d-block" aria-hidden="true"></i>'), delete_groceries_path(ingredient),:class=>"d-block text-right", :method =>:delete %>
+								</div>
+							</div>
+							</div>
+						</div>
+				</div>
+				<% end %>
+		<% end %>
+	</div>
+
+
+
+
+
+
+
+
+
+

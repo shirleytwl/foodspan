@@ -10,13 +10,10 @@ class DashboardsController < ApplicationController
     @bar= barChart(tags)
     @barOpt = barOptions
 
-    @storageItems = storageDashboard(ingredients)
-    @noInStorage = @storageItems.size
-    @storageItems = @storageItems.limit(5)
+    @storageItems = storageDashboard(ingredients).limit(3)
 
-    @groceryItems = groceryDashboard(ingredients)
-    @noInGrocery = @groceryItems.size
-    @groceryItems = @groceryItems.limit(5)
+    @groceryItems = groceryDashboard(ingredients).limit(3)
+
 
   end
 
@@ -98,7 +95,7 @@ class DashboardsController < ApplicationController
 
       if prep.any?
         details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
-        details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
+        details[:datasets].first[:data].push((100 - details[:datasets].first[:data].first).round(2))
       else
         details[:datasets].first[:data].push(0)
         details[:datasets].first[:data].push(0)
@@ -122,7 +119,7 @@ class DashboardsController < ApplicationController
   ## column_chart data + options
 
   private def barChart(tags)
-    details = {:labels => [], :datasets => [{:label => 'Wastage', :type => 'line', :borderColor => '#666666', :data => [], :fill => false}, {:label => 'Wastage', :type => 'bar', :backgroundColor => 'rgba(93, 121, 145, 1)', :backgroundColorHover => "rgba(93, 121, 145, 0.8)", :data => []}]}
+    details = {:labels => [], :datasets => [{:label => 'Wastage', :type => 'line', :borderColor => '#333', :borderWidth=> 2, :data => [], :fill => false}, {:label => 'Wastage', :type => 'bar', :backgroundColor => 'rgba(190, 94, 40, 1)', :backgroundColorHover => "rgba(93, 121, 145, 0.8)", :data => []}]}
 
     numMonths = Date.today.month
 
@@ -160,6 +157,31 @@ class DashboardsController < ApplicationController
       :height => 300,
       :legend => {
             :display => false
+      },
+      :scales => {
+        :yAxes => [{
+          :scaleLabel => {
+            :display => true,
+            :labelString => "Total Food Waste(%)",
+            :fontSize =>"15",
+            :fontColor => "#333",
+            :padding => "-3"
+          },
+          :ticks => {
+                :max => 100,
+                :min => 0,
+                :stepSize => 10,
+                :fontFamily => "'Quicksand', sans-serif",
+                :fontColor => "#333"
+          }
+        }],
+        :xAxes => [{
+          :ticks => {
+                :fontFamily => "'Quicksand', sans-serif",
+                :fontColor => "#333",
+                :fontSize => "15"
+          }
+        }]
       }
     }
   end

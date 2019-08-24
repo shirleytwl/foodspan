@@ -23,7 +23,7 @@
 	  	</div>
 	  	<% else %>
 		  	<% 	@ingredients.each do |ingredient|  %>
-			  	<div class="col-12 col-md-10 offset-md-1">
+			  	<div class="col-12 col-md-10 offset-md-1" id='storage-card-div'>
 			  		<%
 			    		start_date = Date.today
 			    		end_date = ingredient.expiry_date
@@ -33,7 +33,7 @@
 						  <div class="card-body">
 						  	<div class="row">
 						  		<div class="col-8">
-						    		<h2 class="sub-title"><%= ingredient.name%></h2>
+						    		<h2 class="sub-title card-ingredient-name"><%= ingredient.name%></h2>
 					      		<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
 						    		<button class="storage-edit-btn btn btn-outline-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
 						    	</div>

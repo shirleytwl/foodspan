@@ -1,66 +1,71 @@
-<div class="row">
-	<div class="col-10">
-		<h2>Grocery List (<%= @ingredients.where(:stored => false).length %>)</h2>
+<div class="row section">
+	<div class="col-12">
+		<h1 class="title">Shopping List (<%= @ingredients.where(:stored => false).length %>)</h1>
 	</div>
-	<div class="col-2">
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#grocery-add">+</button>
+</div>
+<div class="row section">
+	<div class="col-12 offset-0 col-md-10 offset-md-1 text-center">
+		<button type="button" id="grocery-add-btn" class="btn btn-primary" data-toggle="modal" data-target="#grocery-add">Add to List</button>
+		<button type="button" id="grocery-move-btn" class="btn btn-primary mt-3" data-toggle="modal" data-target="#groceries-storages-add">Move to Storage</button>
 	</div>
 </div>
 
-<div class="md-form mt-0 row">
-  <input class="form-control col-6 offset-3" id="grocery-search" type="text" placeholder="Search" aria-label="Search">
+<div class="row section">
+	<div class="col-12 offset-0 col-md-10 offset-md-1 text-center p-0">
+		<input type="text" id="grocery-search" placeholder="Search" class="form-control">
+		<button id="storage-search-btn" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+	</div>
 </div>
-
-
-
 <div class="row">
 	<div class="col-12">
-		<table id="grocery-table" class="table">
-			<thread>
-				<tr>
-					<th scope="col">Ingredient</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Bought</th>
-					<th scope="col"></th>
-				</tr>
-			</thread>
-			<tbody id="grocery-table-body">
-				<% @ingredients.where(:stored => false).each do |ingredient| %>
-					<tr class="grocery-item">
-			  		<td><%= ingredient.name %></td>
-			  		<td><%= ingredient.quantity %> <%= ingredient.unit %></td>
-			  		<td>
-			  			<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
-							<% if ingredient.bought %>
-							<label>
-								<div class="box">
-									<%= form.check_box :bought, class: "check_box",:checked => true %>
-									<span class="check"></span>
-								</div>
-							</label>
-			  			<% else %>
-								<label>
-									<div class="box">
-										<%= form.check_box :bought, class: "check_box" %>
-										<span class="check"></span>
-									</div>
-								</label>
-			  			<% end %>
+		<div class="row">
+			<% if @ingredients.size == 0 %>
+	  	<div class="col-12 col-md-10 offset-md-1">
+	  		<h3 class="sub-title text-center">There is no storage record found.</h3>
+	  	</div>
+	  	<% else %>
+		  	<div class="col-12 col-md-10 offset-md-1">
+		  		<% @ingredients.where(:stored => false).each do |ingredient| %>
+		  			<div class="card grocery-card">
+					  <div class="card-body">
+					  	<div class="row">
+					  		<div class="col-8">
+				  				<h2 class="sub-title"><%= ingredient.name%></h2>
+				  				<p><b><%= ingredient.quantity_left%>/<%= ingredient.quantity%></b> <%= ingredient.unit%> remaining</p>
+				  				<button data-ingredient="<%= ingredient.id%>" class="btn btn-outline-primary grocery-edit-btn">Edit ingredient</button>
 
-			  			<% end %>
-			  		</td>
-						<td>
-							<a data-ingredient=<%= ingredient.id%> class="grocery-edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-							&nbsp;<%= link_to raw('  <i class="fa fa-trash" aria-hidden="true"></i>'), delete_groceries_path(ingredient), :method =>:delete %>
-						</td>
-	  			</tr>
-  			<% end %>
-			</tbody>
-		</table>
+				  			</div>
+				  			<div class="col-4 d-flex flex-column align-items-end justify-content-between">
+				  				<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
+					  				<% if ingredient.bought %>
+											<label>
+												<div class="box">
+													<%= form.check_box :bought, class: "check_box",:checked => true %>
+													<span class="check"></span>
+												</div>
+											</label>
+				  					<% else %>
+											<label>
+												<div class="box">
+													<%= form.check_box :bought, class: "check_box" %>
+													<span class="check"></span>
+												</div>
+											</label>
+					  				<% end %>
+				  				<% end %>
+				  				<%= link_to raw('<i class="fa fa-trash mr-1 d-block" aria-hidden="true"></i>'), delete_groceries_path(ingredient),:class=>"d-block text-right", :method =>:delete %>
+				  			</div>
+					  	</div>
+					  </div>
+					</div>
+		  		<% end %>
+		  	</div>
+	  	<% end %>
+	  </div>
 	</div>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groceries-storages-add">Add to Storage</button>
+
 
 <%= render "application/grocery-add-modal" %>
 <%= render "application/grocery-edit-modal" %>

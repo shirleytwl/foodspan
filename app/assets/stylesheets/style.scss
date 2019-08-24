@@ -190,6 +190,7 @@ body {
 		margin-bottom: 2rem;
 		@media #{$mobile-size} {
 			font-size: 1.5rem;
+			margin-bottom: 1rem;
 		}
 	}
 	p {
@@ -430,6 +431,9 @@ button:focus {
 }
 
 /* Check-box Button */
+form.edit_ingredient {
+	text-align: right;
+}
 .box {
 	width: 100%;
 	user-select: none;
@@ -442,8 +446,8 @@ button:focus {
 			&:checked {
 
 					~ .check {
-							border-color: #00EA90;
-							box-shadow: 0px 0px 0px 15px #00EA90 inset;
+							border-color: $green;
+							box-shadow: 0px 0px 0px 15px $green inset;
 
 							&::after {
 									opacity: 1;
@@ -462,8 +466,8 @@ button:focus {
 			position: relative;
 			border-radius: 100px;
 			background-color: #FFF;
-			border: 2px solid #00EA90;
-			box-shadow: 0px 0px 0px 0px #00EA90 inset;
+			border: 2px solid $green;
+			box-shadow: 0px 0px 0px 0px $green inset;
 			transition: all 0.15s cubic-bezier(0, 1.05, 0.72, 1.07);
 
 			&::after {
@@ -485,7 +489,10 @@ button:focus {
 }
 
 /* Report Progress Bar START */
-
+.progress {
+	border-radius:20px;
+	margin-bottom:0.5rem 0;
+}
 .consumed-text {
 	color: $green;
 }
@@ -524,7 +531,7 @@ button:focus {
 	display: block;
 	margin: 0 auto;
 }
-.storage-add-submit-btn  {
+.storage-add-submit-btn,  {
 	display: block;
 	margin: 2rem auto;
 }
@@ -544,7 +551,9 @@ button:focus {
 #storage-search-btn:hover {
 	opacity: 0.5;
 }
-
+#storage-search {
+	border-radius: 20px;
+}
 /* Storage END */
 
 
@@ -558,6 +567,27 @@ button:focus {
 .col-ingredient-name {
 	width: 50%;
 }
+/* Grocery START */
+.grocery-add-submit-btn,
+.grocery-edit-submit-btn,
+.grocery-move-submit-btn  {
+	display: block;
+	margin: 2rem auto;
+}
+
+#grocery-add-btn,
+#grocery-move-btn,
+.grocery-edit-btn,
+.grocery-add-submit-btn,
+.grocery-edit-submit-btn,
+.grocery-move-submit-btn{
+	padding: 0.375rem 1rem;
+}
+
+#grocery-search {
+	border-radius: 20px;
+}
+/* Grocery END */
 
 /* Modal START */
 .modal-content {
@@ -579,6 +609,7 @@ form {
 }
 /* General Form END */
 
+/* Storage START */
 .storage-card {
 	margin-bottom: 1rem;
 	border-radius: 20px;
@@ -632,7 +663,24 @@ form {
 		display: block;
 	}
 }
-/* General Form END */
+/* Storage END */
+
+/* Grocery START */
+.grocery-card {
+	margin-bottom: 2rem;
+	border-radius: 20px;
+	p, button {
+		font-size: 0.875rem;
+	}
+	b {
+		font-weight: 600;
+	}
+	.fa.fa-trash {
+		color: $green;
+		font-size: 2rem;
+	}
+}
+/* Grocery END */
 
 /* Tokenfield START*/
 .tokenfield .token {

@@ -39,9 +39,9 @@
 
 <div class="row section">
 	<div class="col-12 col-md-10 offset-md-1 dashboard-title">
-		<h2 class="sub-title"> Storage Items </h2>
+		<h2 class="sub-title">Storage List </h2>
 		<div>
-			<%= link_to raw('<span>Show all <i class="fa fa-angle-right" aria-hidden="true"></i></span>'), storages_path %>
+			<%= link_to raw('<span>View all <i class="fa fa-angle-right" aria-hidden="true"></i></span>'), storages_path %>
 		</div>
 	</div>
 	<% if @storageItems.size == 0 %>
@@ -80,19 +80,7 @@
 									</div>
 								<% end %>
 							</div>
-							<!-- <div class="col-2">
-								<button class="storage-edit-btn btn btn-primary" data-ingredient=<%= ingredient.id %>>Update Quantity</i></button>
-							</div>
-							<div class="col-md-3">
-								<p><%= ingredient.quantity_left%>/<%= ingredient.quantity%> <%= ingredient.unit%> remaining</p>
-							</div>
-							<div class="col-md-3">
-								<% if days_remaining >= 0 %>
-									<p class="fresh">Expiring in <%= days_remaining%> Days</p>
-								<% else %>
-									<p class="expired">Expired <%= days_remaining*-1%> Days ago</p>
-								<% end %>
-							</div> -->
+
 						</div>
 					</div>
 				</div>
@@ -102,15 +90,15 @@
 
 <div class="row section">
 	<div class="col-12 col-md-10 offset-md-1 dashboard-title">
-			<h2 class="sub-title"> Grocery Items </h2>
+			<h2 class="sub-title">Shopping List </h2>
 			<div>
-				<%= link_to raw('<span>Show all <i class="fa fa-angle-right" aria-hidden="true"></i></span>'), groceries_path %>
+				<%= link_to raw('<span>View all <i class="fa fa-angle-right" aria-hidden="true"></i></span>'), groceries_path %>
 			</div>
 	</div>
 
 	<% if @groceryItems.size == 0 %>
 			<div class="col-12 col-md-10 offset-md-1 dashboard-grocery">
-					<h3 class="sub-title text-center">There is no storage record found.</h3>
+					<h3 class="sub-title text-center">There is no shopping item found.</h3>
 			</div>
 	<% else %>
 				<% @groceryItems.where(:stored => false).each do |ingredient| %>
@@ -150,13 +138,3 @@
 				<% end %>
 		<% end %>
 	</div>
-
-
-
-
-
-
-
-
-
-

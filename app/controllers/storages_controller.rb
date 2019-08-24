@@ -1,4 +1,5 @@
 class StoragesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @ingredients = Ingredient.where(stored: true, removed:false, user_id: current_user).order(expiry_date: :asc)
     @tags = Tag.all

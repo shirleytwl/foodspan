@@ -1,21 +1,31 @@
-<%= scatter_chart @data, @options %>
-
-
-<div class="md-form mt-0 row">
-  <input class="form-control col-6 offset-3" id="report-search" type="text" placeholder="Search" aria-label="Search">
+<div class="row section">
+	<div class="col-12 p-0">
+		<h1 class="title"><%=@tag.name%></h1>
+	</div>
+</div>
+<div class="row section">
+	<div class="col-12 p-0">
+		<%= scatter_chart @data, @options %>
+	</div>
+</div>
+<div class="row section">
+	<div class="col-12 p-0">
+	  <input class="form-control" id="report-search" type="text" placeholder="Search" aria-label="Search">
+	  <button id="report-search-btn" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+	</div>
 </div>
 
 
-<div class="row">
-	<div class="col-12">
-		<table class="table" >
-			<thread>
+<div class="row section">
+	<div class="col-12 p-0">
+		<table class="table report-table">
+			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Ingredient</th>
-					<th scope="col">Wasted</th>
-					<th scope="col">Consumed</th>
+					<th scope="col" class="wastage">Wasted</th>
+					<th scope="col" class="consumed">Consumed</th>
 				</tr>
-			</thread>
+			</thead>
 			<tbody id='report-table'>
 				<% @ingredients.each do |ingredient| %>
 					<tr>

@@ -1,4 +1,5 @@
 class DashboardsController < ApplicationController
+  before_action :authenticate_user!, :except => [ :home ]
   def index
     tags = Tag.all
     ingredients = Ingredient.all

@@ -1,51 +1,52 @@
-<div class="row text-center ">
+<div class="row mb-5 mb-md-0 text-center">
 	<div class="col-12">
-
-		<h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
-
-		<div class="offset-0 col-12 col-md-6 offset-md-3 register-form">
-			<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-			  <%= render "devise/shared/error_messages", resource: resource %>
-
-			  <div class="field form-group">
-			    <%= f.label :email %><br />
-			    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-			  </div>
-
-			  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-			    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-			  <% end %>
-
-			  <div class="field form-group">
-			    <%= f.label :password %> <i>(leave blank if not changing)</i><br />
-			    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-			    <% if @minimum_password_length %>
-			      <br />
-			      <em><%= @minimum_password_length %> characters minimum</em>
-			    <% end %>
-			  </div>
-
-			  <div class="field form-group mb-0">
-			    <%= f.label :password_confirmation %><br />
-			    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-			  </div>
-
-			  <div class="field form-group mb-0">
-			    <%= f.label :current_password %> <i>(require current password to confirm changes)</i><br />
-			    <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-			  </div>
-
-			  <div class="actions">
-			    <%= f.submit "Update", class: "btn btn-primary" %>
-			  </div>
-			<% end %>
-		</div>
-
-			<h4>Unhappy?</h4>
-
-			<p class="mb-0"><%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-primary", data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-			<p class="mb-0"><%= link_to "Back", :back %></p>
-
+		<h1 class="title">Update Profile</h1>
 	</div>
+</div>
+<div class="row text-center">
+	<div class="offset-0 col-12 col-md-6 offset-md-3">
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+		  <%= render "devise/shared/error_messages", resource: resource %>
+
+		  <div class="field form-group text-left">
+		    <%= f.label :email %>
+		    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+		  </div>
+
+		  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+		    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+		  <% end %>
+		  <div class="mt-4">
+		  	<p>
+				  <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#change-password" aria-expanded="false" aria-controls="change-password">
+				    Change Password
+				  </button>
+				</p>
+				<div class="collapse mb-3" id="change-password">
+				  <div class="card card-body">
+				    <div class="field form-group">
+					    <%= f.password_field :password, autocomplete: "new-password", placeholder:"New Password", class:"form-control" %>
+					  </div>
+
+					  <div class="field form-group">
+					    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirm Password", class:"form-control" %>
+					  </div>
+
+					  <div class="field form-group">
+					    <%= f.password_field :current_password, autocomplete: "current-password", placeholder:"Old Password", class:"form-control" %>
+					  </div>
+				  </div>
+				</div>
+		  </div>
+
+		  <div class="actions">
+		    <%= f.submit "Update", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+	</div>
+</div>
+<div class="row section text-center">
+	<div class ="offset-0 col-12 offset-md-3 col-md-6">
+		<h1 class="title mb-3">Delete Account</h1>
+		<p class="mb-0"><%= button_to "Delete", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete %></p>
 </div>

@@ -57,7 +57,6 @@ class GroceriesController < ApplicationController
     end
 
     @ingredient.save
-    redirect_to groceries_path
   end
 
   private

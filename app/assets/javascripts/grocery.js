@@ -29,7 +29,12 @@ window.onload = function() {
     });
 
     $(".check_box").change(function(){
-        this.form.submit();
+        var data = 'id=' + this.name
+        Rails.ajax({
+            url: "/grocery/editbought",
+            type: "POST",
+            data: data
+        });
     })
 };
 

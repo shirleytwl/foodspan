@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   patch '/storage/:id' => 'storages#destroy', as: 'remove_storages'
   get '/suggestion' => 'suggestions#index', as: 'suggestions'
 
+  get '*unmatched_route', to: 'dashboards#home'
 end

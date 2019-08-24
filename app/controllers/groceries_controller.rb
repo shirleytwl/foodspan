@@ -34,6 +34,15 @@ class GroceriesController < ApplicationController
     redirect_to groceries_path
   end
 
+  def addgroceriesstoragesform
+    @ingredients = Ingredient.where(:user => current_user, :bought => true, :stored => false)
+
+    respond_to do |format|
+      format.html { render partial: 'grocery-storage-add-form', locals: {ingredients: @ingredients}}
+    end
+  end
+
+
   def addgroceriesstorages
     params[:ids].each do |id|
       id=id.to_i
@@ -57,7 +66,6 @@ class GroceriesController < ApplicationController
     end
 
     @ingredient.save
-    redirect_to groceries_path
   end
 
   private

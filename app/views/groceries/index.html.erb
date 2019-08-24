@@ -38,23 +38,21 @@
 
 				  			</div>
 				  			<div class="col-4 d-flex flex-column align-items-end justify-content-between">
-				  				<%= form_for ingredient, :url => update_groceries_bought_path(ingredient) do |form| %>
 					  				<% if ingredient.bought %>
 											<label>
 												<div class="box">
-													<%= form.check_box :bought, class: "check_box",:checked => true %>
+													<input type="checkbox" class="check_box" name=<%= ingredient.id %>  checked />
 													<span class="check"></span>
 												</div>
 											</label>
 				  					<% else %>
 											<label>
 												<div class="box">
-													<%= form.check_box :bought, class: "check_box" %>
-													<span class="check"></span>
+												<input type="checkbox" class="check_box" name=<%= ingredient.id %> />
+												<span class="check"></span>
 												</div>
 											</label>
 					  				<% end %>
-				  				<% end %>
 				  				<%= link_to raw('<i class="fa fa-trash mr-1 d-block" aria-hidden="true"></i>'), delete_groceries_path(ingredient),:class=>"d-block text-right", :method =>:delete %>
 				  			</div>
 					  	</div>

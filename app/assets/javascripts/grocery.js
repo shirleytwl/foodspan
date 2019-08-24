@@ -29,7 +29,12 @@ window.onload = function() {
     });
 
     $(".check_box").change(function(){
-        this.form.submit();
+        var data = 'id=' + this.name
+        Rails.ajax({
+            url: "/grocery/editbought",
+            type: "POST",
+            data: data
+        });
     })
 };
 
@@ -52,3 +57,9 @@ $(document).ready(function(){
           });
     });
   });
+
+
+ $("#grocery-move-btn").on('click',function(e){
+      $('#groceries-storages-add').modal('show');
+      $('#groceries-storages-add .modal-body').load("grocery/storage",function(){});
+  })

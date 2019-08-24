@@ -8,39 +8,6 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-					<div class="col-12">
-					<%= form_with url: add_groceries_storages_path, method: 'patch', local: true do |form| %>
-						<% @ingredients.where(:stored=>false, :bought=>true).each_with_index do |ingredient,index| %>
-							<div class="row">
-								<div class="col-12">
-									<div class="card grocery-card">
-									  <div class="card-body">
-									  	<div class="row">
-									  		<div class="col-12">
-									  			<h3 class="sub-title mb-3"><%= ingredient.name %></h3>
-									  		</div>
-									  		<div class="col-6">
-									  			<p class="mb-1">Expire date</p>
-									  			<%= form.text_field "date[]", class:"form-control add-grocery-storage-expiry-date",id:"add-grocery-storage-expiry-date-#{index}", :data => {:provide => "datepicker", :date_format => "yyyy-mm-dd"}%>
-													<input type = "hidden" name="ids[]" value= <%= ingredient.id %> />
-									  		</div>
-									  		<div class="col-6">
-									  			<p class="mb-1">Expire in</p>
-									  			<div class="form-group">
-												    <input type="number" class="add-grocery-storage-expiry-days form-control" id="add-grocery-storage-expiry-days-<%=index%>" value="0" class="form-control">
-												  </div>
-									  		</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						<% end %>
-						<%= form.submit "Add To Storage", class: "btn btn-primary grocery-move-submit-btn" %>
-					</div>
-				</div>
-				<% end %>
 			</div>
 		</div>
 	</div>

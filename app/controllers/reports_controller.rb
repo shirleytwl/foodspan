@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!
   def index
     tags = Tag.all
     @details = []
@@ -75,7 +76,8 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @ingredients = Tag.find(params[:id]).ingredients.where(user: current_user, removed: true)
+    @tag = Tag.find(params[:id]);
+    @ingredients = @tag.ingredients.where(user: current_user, removed: true)
     @data= scatterChart(@ingredients)
     @options = scatterOptions
 
@@ -90,10 +92,12 @@ class ReportsController < ApplicationController
         data[:data].first[:y] = 100.0 - data[:data].first[:x]
 
         if data[:data].first[:x] > 20
-          data[:borderColor] = '#346102'
+          data[:borderColor] = 'rgba(111, 150, 55, 1)'
+          data[:borderWidth] = '4'
           data[:backgroundColor] = 'rgba(111, 150, 55, 1)'
         else
-          data[:borderColor] = '#802E00'
+          data[:borderColor] = 'rgba(190, 94, 40, 1)'
+          data[:borderWidth] = '4'
           data[:backgroundColor] = 'rgba(190, 94, 40, 1)'
         end
 

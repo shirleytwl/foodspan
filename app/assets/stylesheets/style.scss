@@ -6,6 +6,7 @@ $lred: rgba(190, 94, 40, 1);
 $black: #333;
 $white: #fff;
 $gray: #ccc;
+$lgray: #efefef;
 $mobile-size: "only screen and (max-width: 544px)";
 
 
@@ -76,7 +77,7 @@ a.btn-danger {
 	}
 }
 .bg-light {
-	background-color: #efefef!important;
+	background-color: $lgray!important;
 }
 
 #collapsibleNavbar {
@@ -336,6 +337,49 @@ button:focus {
 		}
 	}
 }
+/* Individual Report */
+.report-table {
+	.thead-dark {
+		background-color: $lgray;
+		tr {
+			th:first-child { border-radius: 20px 0 0 20px; }
+			th:last-child { border-radius: 0 20px 20px 0; }
+		}
+		th {
+			font-weight: 500;
+			color: $black;
+			background-color: transparent;
+	    border-color: transparent;
+		}
+		.wastage {
+			color: $red;
+		}
+		.consumed {
+			color: $green;
+		}
+	}
+}
+#report-search-btn {
+	position: absolute;
+  top: 0;
+  right: 0;
+  transition: 0.3s;
+  color: $lgreen;
+}
+
+#report-search-btn:hover,
+#report-search-btn:not(:disabled):not(.disabled):active,
+#report-search-btn:not(:disabled):not(.disabled):focus,
+#report-search-btn:not(:disabled):not(.disabled):active:focus{
+	box-shadow:none;
+}
+#report-search-btn:hover {
+	opacity: 0.5;
+}
+#report-search {
+	border-radius: 20px;
+}
+
 /* Login Form START */
 
 .login-form{
@@ -586,6 +630,7 @@ form.edit_ingredient {
 	margin: 2rem auto;
 }
 #storage-search-btn {
+  color: $lgreen;
 	position: absolute;
   top: 0;
   right: 0;
@@ -634,6 +679,26 @@ form.edit_ingredient {
 	padding: 0.375rem 1rem;
 }
 
+#grocery-search {
+	border-radius: 20px;
+}
+#grocery-search-btn {
+  color: $lgreen;
+	position: absolute;
+  top: 0;
+  right: 0;
+  transition: 0.3s;
+}
+
+#grocery-search-btn:hover,
+#grocery-search-btn:not(:disabled):not(.disabled):active,
+#grocery-search-btn:not(:disabled):not(.disabled):focus,
+#grocery-search-btn:not(:disabled):not(.disabled):active:focus{
+	box-shadow:none;
+}
+#grocery-search-btn:hover {
+	opacity: 0.5;
+}
 #grocery-search {
 	border-radius: 20px;
 }

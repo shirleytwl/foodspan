@@ -47,8 +47,8 @@ function calculateExpiryFromDays (expireDays, displayResult){
 $(document).ready(function(){
     $("#grocery-search").on("keyup", function() {
           var value = $(this).val().toLowerCase();
-      $("#grocery-table-body tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $(".card-ingredient-name").filter(function() {
+        $(this).parent().parent().parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
     });
   });

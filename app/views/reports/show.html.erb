@@ -19,7 +19,7 @@
 			<tbody id='report-table'>
 				<% @ingredients.each do |ingredient| %>
 					<tr>
-			  		<td><%= ingredient.name %></td>
+			  		<td class="row-ingredient-name"><%= ingredient.name %></td>
 			  		<td><%= ingredient.quantity_left %> <%= ingredient.unit %> (<%= ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2) %>%)</td>
 			  		<td><%= ingredient.quantity - ingredient.quantity_left %> <%= ingredient.unit %> (<%= 100 - ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2) %>%)</td>
 					</tr>
@@ -33,8 +33,8 @@
 $(document).ready(function(){
   $("#report-search").on("keyup", function() {
 		var value = $(this).val().toLowerCase();
-    $("#report-table tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $(".row-ingredient-name").filter(function() {
+      $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		});
   });
 });

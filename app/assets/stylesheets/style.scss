@@ -256,56 +256,6 @@ button:focus {
 	box-shadow:none;
 }
 
-/* Dashboard Styling */
-
-.doughnut {
-	margin-top: 4rem;
-	p {
-		font-size: 1.5rem;
-		span {
-			margin-top: 1rem;
-			font-size: 3.5rem;
-			font-weight: 300;
-		}
-	}
-	.wastage {
-		color: $lred;
-	}
-	.consumed {
-		color: $lgreen;
-	}
-	.doughnut-stats {
-		display: block;
-	}
-	@media #{$mobile-size} {
-		margin-top: 2rem;
-		p {
-			font-size: 1.15rem;
-			span {
-				margin-top: 1rem;
-				font-size: 1.5rem;
-				font-weight: 300;
-			}
-		}
-	}
-}
-
-.dashboard-title {
-	h2 {
-		font-family: 'Quicksand', sans-serif!important;
-		color: #333;
-		@media #{$mobile-size} {
-			font-size: 1.3rem;
-		}
-	}
-}
-
-.dashboard-angle-div{
-	text-align: right;
-}
-
-
-/* Dashboard Styling */
 /* Login Form START */
 
 .login-form{
@@ -814,3 +764,109 @@ input[type=range]::-ms-track {
 }
 
 /* Range Slider END */
+
+/* Dashboard Styling */
+.doughnut {
+	margin-top: 4rem;
+	p {
+		font-size: 1.5rem;
+		span {
+			margin-top: 1rem;
+			font-size: 3.5rem;
+			font-weight: 300;
+		}
+	}
+	.wastage {
+		color: $lred;
+	}
+	.consumed {
+		color: $lgreen;
+	}
+	.doughnut-stats {
+		display: block;
+	}
+	@media #{$mobile-size} {
+		margin-top: 2rem;
+		p {
+			font-size: 1.15rem;
+			span {
+				margin-top: 1rem;
+				font-size: 1.5rem;
+				font-weight: 300;
+			}
+		}
+	}
+}
+
+.food-report {
+	padding-top: 0.3rem;
+}
+
+.months-average {
+	padding: 1rem 0 0.5rem;
+}
+
+.dashboard-title {
+	padding-bottom: 0.5rem;
+	h2 {
+		display: inline-block;
+		width: 58.5%;
+		font-family: 'Quicksand', sans-serif!important;
+		color: #333;
+		padding-left:1%;
+		margin-bottom: 0.5rem;
+		@media #{$mobile-size} {
+			font-size: 1.3rem;
+		}
+	}
+
+	div {
+		display: inline-block;
+		width: 38.5%;
+		text-align:right;
+		padding-right: 0.5%;
+		span{
+			font-weight: 500;
+			letter-spacing: 0.1rem;
+			color: #333;
+			@media #{$mobile-size} {
+				font-size: 0.9rem;
+			}
+		}
+	}
+}
+
+.dashboard-storage {
+	.card-body {
+		@media #{$mobile-size} {
+			padding: 0.5rem 0.7rem!important;
+		}
+	}
+	.card-body-storage-text,
+	.card-body-grocery-text {
+    display: flex;
+    flex-direction: column;
+		justify-content: center;
+		p {
+			margin: 0;
+		}
+	}
+}
+
+.dashboard-grocery {
+	.card-body {
+		@media #{$mobile-size} {
+			padding: 1rem!important;
+		}
+	}
+	.card-body-grocery-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		p {
+			margin: 0;
+		}
+	}
+}
+
+/* Dashboard Styling */

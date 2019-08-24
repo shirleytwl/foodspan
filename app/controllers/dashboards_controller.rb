@@ -9,13 +9,10 @@ class DashboardsController < ApplicationController
     @bar= barChart(tags)
     @barOpt = barOptions
 
-    @storageItems = storageDashboard(ingredients)
-    @noInStorage = @storageItems.size
-    @storageItems = @storageItems.limit(3)
+    @storageItems = storageDashboard(ingredients).limit(3)
 
-    @groceryItems = groceryDashboard(ingredients)
-    @noInGrocery = @groceryItems.size
-    @groceryItems = @groceryItems.limit(3)
+    @groceryItems = groceryDashboard(ingredients).limit(3)
+
 
   end
 
@@ -97,7 +94,7 @@ class DashboardsController < ApplicationController
 
       if prep.any?
         details[:datasets].first[:data].push((prep.sum/prep.length*100).round(2))
-        details[:datasets].first[:data].push(100 - details[:datasets].first[:data].first)
+        details[:datasets].first[:data].push((100 - details[:datasets].first[:data].first).round(2))
       else
         details[:datasets].first[:data].push(0)
         details[:datasets].first[:data].push(0)

@@ -57,3 +57,9 @@ $(document).ready(function(){
           });
     });
   });
+
+
+ $("#grocery-move-btn").on('click',function(e){
+      $('#groceries-storages-add').modal('show');
+      $('#groceries-storages-add .modal-body').load("grocery/storage",function(){});
+  })

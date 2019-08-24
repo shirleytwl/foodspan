@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   get '/grocery/new' => 'groceries#new', as: 'new_groceries'
   post '/grocery' => 'groceries#create'
   post '/grocery/editbought' => 'groceries#updatebought', as: 'update_groceries_bought'
+  get 'grocery/storage' => 'groceries#addgroceriesstoragesform', as: 'add_groceries_storages'
+  patch '/grocery/storage' => 'groceries#addgroceriesstorages'
   get '/grocery/:id/edit' => 'groceries#edit', as: 'edit_groceries'
   patch '/grocery/:id/edit' => 'groceries#update', as: 'update_groceries'
   delete '/grocery/:id' => 'groceries#destroy', as: 'delete_groceries'
-  patch '/grocery/storage' => 'groceries#addgroceriesstorages', as: 'add_groceries_storages'
+
 
   get '/storage' => 'storages#index', as: 'storages'
   post '/storage' => 'storages#create'

@@ -255,7 +255,7 @@ button:focus {
 	box-shadow:none;
 }
 
-/* Dashboard Stats */
+/* Dashboard Styling */
 
 .doughnut {
 	margin-top: 4rem;
@@ -288,6 +288,23 @@ button:focus {
 		}
 	}
 }
+
+.dashboard-title {
+	h2 {
+		font-family: 'Quicksand', sans-serif!important;
+		color: #333;
+		@media #{$mobile-size} {
+			font-size: 1.3rem;
+		}
+	}
+}
+
+.dashboard-angle-div{
+	text-align: right;
+}
+
+
+/* Dashboard Styling */
 /* Login Form START */
 
 .login-form{
@@ -563,7 +580,7 @@ form {
 /* General Form END */
 
 .storage-card {
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 	border-radius: 20px;
 	p, button {
 		font-size: 0.875rem;

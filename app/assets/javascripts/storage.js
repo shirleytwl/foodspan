@@ -99,7 +99,7 @@ window.onload = function() {
 $(document).ready(function(){
     $("#storage-search").on("keyup", function() {
           var value = $(this).val().toLowerCase();
-      $("#storage-table-body tr").filter(function() {
+      $("#storage-card-div .card").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
     });

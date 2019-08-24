@@ -11,11 +11,11 @@ class DashboardsController < ApplicationController
 
     @storageItems = storageDashboard(ingredients)
     @noInStorage = @storageItems.size
-    @storageItems = @storageItems.limit(5)
+    @storageItems = @storageItems.limit(3)
 
     @groceryItems = groceryDashboard(ingredients)
     @noInGrocery = @groceryItems.size
-    @groceryItems = @groceryItems.limit(5)
+    @groceryItems = @groceryItems.limit(3)
 
   end
 

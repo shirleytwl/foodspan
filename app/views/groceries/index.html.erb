@@ -6,7 +6,9 @@
 <div class="row section">
 	<div class="col-12 offset-0 col-md-10 offset-md-1 text-center">
 		<button type="button" id="grocery-add-btn" class="btn btn-primary d-block mx-auto" data-toggle="modal" data-target="#grocery-add">Add to List</button>
-		<button type="button" id="grocery-move-btn" class="btn btn-primary mt-3 d-block mx-auto" data-toggle="modal" data-target="#groceries-storages-add">Move to Storage</button>
+		<% if @ingredients.size > 0 %>
+			<button type="button" id="grocery-move-btn" class="btn btn-primary mt-3 d-block mx-auto" data-toggle="modal" data-target="#groceries-storages-add">Move to Storage</button>
+		<% end %>
 	</div>
 </div>
 

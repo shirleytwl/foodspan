@@ -4,9 +4,6 @@ class GroceriesController < ApplicationController
     @ingredients = Ingredient.all.where(:user => current_user)
   end
 
-  def show
-  end
-
   def new
   end
 

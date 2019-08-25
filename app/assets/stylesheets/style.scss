@@ -685,6 +685,9 @@ form.edit_ingredient {
 .col-ingredient-name {
 	width: 50%;
 }
+.unit {
+	text-transform: lowercase;
+}
 /* Grocery START */
 .grocery-add-submit-btn,
 .grocery-edit-submit-btn,
@@ -1078,5 +1081,7 @@ footer {
 	padding:1.5rem 0;
 	p {
 		margin: 0;
+		letter-spacing: 0.25rem;
+		text-transform: uppercase;
 	}
 }

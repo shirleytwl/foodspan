@@ -20,18 +20,23 @@ class StoragesController < ApplicationController
     @ingredient.save
 
     tags = params[:tag].split(', ')
-    tags = tags.uniq
 
-    tags.each do |tag|
-      inDatabase ||= Tag.where(name: tag.capitalize)
+    if tags.length == 0
+      @ingredient.tags << Tag.where(:name => "General")
+    else
+      tags = tags.uniq
 
-      if inDatabase.size > 0
-        @ingredient.tags << inDatabase
-      else
-        newTag = Tag.new()
-        newTag.name = tag.capitalize
-        newTag.save
-        @ingredient.tags << inDatabase
+      tags.each do |tag|
+        inDatabase ||= Tag.where(name: tag.capitalize)
+
+        if inDatabase.size > 0
+          @ingredient.tags << inDatabase
+        else
+          newTag = Tag.new()
+          newTag.name = tag.capitalize
+          newTag.save
+          @ingredient.tags << inDatabase
+        end
       end
     end
 
@@ -67,31 +72,45 @@ class StoragesController < ApplicationController
     end
 
     inputTags = params[:tag].split(', ')
-    inputTags = inputTags.uniq
+    p '#################'
+    p inputTags
+    p @ingredient.tags
+    p '#################'
 
-    #Add Tags that are not found in current list of tags
-    inputTags.each do |tag|
-      if currentTags.include? tag
-        currentTags.delete(tag)
-      else
-        inDatabase ||= Tag.where(name: tag.capitalize)
-          if inDatabase.size > 0
-            @ingredient.tags << inDatabase
-          else
-            newTag = Tag.new()
-            newTag.name = tag.capitalize
-            newTag.save
-            @ingredient.tags << inDatabase
-          end
-      end
-    end
-
-    #Remove tags that are not found in input tags
-    if currentTags.length > 0
+    if inputTags.length == 0
       currentTags.each do |tag|
         removeTag = Tag.where(name: tag.capitalize)
         @ingredient.tags.delete(removeTag)
       end
+
+      @ingredient.tags << Tag.where(:name => "General")
+    else
+        inputTags = inputTags.uniq
+
+        #Add Tags that are not found in current list of tags
+        inputTags.each do |tag|
+          if currentTags.include? tag
+            currentTags.delete(tag)
+          else
+            inDatabase ||= Tag.where(name: tag.capitalize)
+              if inDatabase.size > 0
+                @ingredient.tags << inDatabase
+              else
+                newTag = Tag.new()
+                newTag.name = tag.capitalize
+                newTag.save
+                @ingredient.tags << inDatabase
+              end
+          end
+        end
+
+        #Remove tags that are not found in input tags
+        if currentTags.length > 0
+          currentTags.each do |tag|
+            removeTag = Tag.where(name: tag.capitalize)
+            @ingredient.tags.delete(removeTag)
+          end
+        end
     end
 
     redirect_to storages_path

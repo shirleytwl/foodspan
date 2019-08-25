@@ -19,6 +19,8 @@ class GroceriesController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user = current_user
     @ingredient.save
+
+    @ingredient.tags << Tag.where(:name => "General")
     redirect_to groceries_path
   end
 

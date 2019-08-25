@@ -10,6 +10,7 @@
 
 Tag.destroy_all
 
+t0 = Tag.create(name: "General")
 t1 = Tag.create(name: "Fruits")
 t2 = Tag.create(name: "Meat")
 t3 = Tag.create(name: "Poultry")

@@ -48,6 +48,8 @@ class GroceriesController < ApplicationController
       id=id.to_i
       ingredient = Ingredient.find(id)
       ingredient.expiry_date = params[:date].first
+      ingredient.purchase_date = Date.today
+      ingredient.quantity_left = ingredient.quantity
       ingredient.stored = true
       ingredient.save
       params[:date].shift

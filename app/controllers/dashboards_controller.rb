@@ -51,35 +51,35 @@ class DashboardsController < ApplicationController
         when 'year'
           p 'year'
           tag.ingredients.each do |ingredient|
-            if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.year && ingredient.updated_at < Date.today
+            if ingredient.user == current_user && ingredient.removed == true && ingredient.expiry_date >= Date.today - 1.year && ingredient.expiry_date < Date.today
               prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             end
           end
         when 'quarter'
           p 'quarter'
           tag.ingredients.each do |ingredient|
-            if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 3.month && ingredient.updated_at < Date.today
+            if ingredient.user == current_user && ingredient.removed == true && ingredient.expiry_date >= Date.today - 3.month && ingredient.expiry_date < Date.today
               prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             end
           end
         when 'month'
           p 'month'
           tag.ingredients.each do |ingredient|
-            if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.month && ingredient.updated_at < Date.today
+            if ingredient.user == current_user && ingredient.removed == true && ingredient.expiry_date >= Date.today - 1.month && ingredient.expiry_date < Date.today
               prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             end
           end
         when 'week'
           p 'week'
           tag.ingredients.each do |ingredient|
-            if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.week && ingredient.updated_at < Date.today
+            if ingredient.user == current_user && ingredient.removed == true && ingredient.expiry_date >= Date.today - 1.week && ingredient.expiry_date < Date.today
               prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             end
           end
         when 'day'
           p 'day'
           tag.ingredients.each do |ingredient|
-            if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at >= Date.today - 1.day && ingredient.updated_at < Date.today
+            if ingredient.user == current_user && ingredient.removed == true && ingredient.expiry_date >= Date.today - 1.day && ingredient.expiry_date < Date.today
               prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
             end
           end
@@ -130,7 +130,7 @@ class DashboardsController < ApplicationController
 
       tags.each do |tag|
         tag.ingredients.each do |ingredient|
-          if ingredient.user == current_user && ingredient.removed == true && ingredient.updated_at.year == Date.today.year && ingredient.updated_at.month == numMonths
+          if ingredient.user == current_user && ingredient.removed == true && ingredient.expiry_date.year == Date.today.year && ingredient.expiry_date.month == numMonths
             prep.push(ingredient.quantity_left.to_f/ingredient.quantity.to_f)
           end
         end

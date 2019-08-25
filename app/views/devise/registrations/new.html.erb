@@ -1,9 +1,9 @@
 <div class="row mb-5 mb-md-0 text-center">
-	<div class="col-12">
+	<div class="col-12 title">
 		<h1 class = "title">Sign Up</h1>
 	</div>
 </div>
-<div class="row text-center">
+<div class="row section section-first text-center mb-md-0">
 	<div class ="offset-0 col-12 offset-md-4 col-md-4 register-form">
 		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 			<div class="field form-group">
@@ -36,7 +36,7 @@
 	</div>
 </div>
 
-<div class="row text-center">
+<div class="row section text-center mt-md-0">
 	<div class = "offset-0 col-12 offset-md-4 col-md-4 register-text">
 			<p class="mb-0">Have an existing account?</p>
 			<p>Click <%= link_to 'here', new_user_session_path %> to login now! </p>

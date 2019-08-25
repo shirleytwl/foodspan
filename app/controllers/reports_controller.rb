@@ -87,11 +87,11 @@ class ReportsController < ApplicationController
   private def scatterChart (ingredients)
     details={:datasets => []}
 
-    ingredients.each do |ingredient|
-        data = {:label => ingredient.name, :borderColor=> '', :backgroundColor => '', :data => [{:x => ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2)}]}
-        data[:data].first[:y] = 100.0 - data[:data].first[:x]
+    ingredients.each_with_index do |ingredient,index|
+        data = {:label => ingredient.name, :borderColor=> '', :backgroundColor => '', :data => [{:y => ((ingredient.quantity_left.to_f/ingredient.quantity.to_f)*100).round(2)}]}
+        data[:data].first[:x] = index
 
-        if data[:data].first[:x] > 20
+        if data[:data].first[:y] < 30
           data[:borderColor] = 'rgba(111, 150, 55, 1)'
           data[:borderWidth] = '4'
           data[:backgroundColor] = 'rgba(111, 150, 55, 1)'
@@ -129,14 +129,8 @@ class ReportsController < ApplicationController
           }
         }],
         :xAxes => [{
-          :scaleLabel => {
-            :display => true,
-            :labelString => "Food Consumed(%)"
-          },
           :ticks => {
-                max: 100,
-                min: 0,
-                stepSize: 10
+                :display => false,
           }
         }]
       },
@@ -147,7 +141,7 @@ class ReportsController < ApplicationController
             return label;
           }",
           :afterLabel => "function(tooltipItem, data) {
-            var label = ['Wasted(%): ' + tooltipItem.yLabel  + '%', 'Consumed(%): ' + tooltipItem.xLabel + '%'];
+            var label = ['Wasted(%): ' + tooltipItem.yLabel  + '%'];
             return label;
           }"
         }

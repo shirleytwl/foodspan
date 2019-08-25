@@ -1,7 +1,7 @@
 class GroceriesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @ingredients = Ingredient.all.where(:user => current_user)
+    @ingredients = Ingredient.all.where(:user => current_user, :stored => false, :removed => false)
   end
 
   def new
@@ -19,6 +19,8 @@ class GroceriesController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user = current_user
     @ingredient.save
+
+    @ingredient.tags << Tag.where(:name => "General")
     redirect_to groceries_path
   end
 
@@ -48,6 +50,8 @@ class GroceriesController < ApplicationController
       id=id.to_i
       ingredient = Ingredient.find(id)
       ingredient.expiry_date = params[:date].first
+      ingredient.purchase_date = Date.today
+      ingredient.quantity_left = ingredient.quantity
       ingredient.stored = true
       ingredient.save
       params[:date].shift

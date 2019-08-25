@@ -1,7 +1,7 @@
 class GroceriesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @ingredients = Ingredient.all.where(:user => current_user)
+    @ingredients = Ingredient.all.where(:user => current_user, :stored => false, :removed => false)
   end
 
   def new

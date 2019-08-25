@@ -1,9 +1,9 @@
 <div class="row section">
-	<div class="col-12">
+	<div class="col-12 title">
 		<h1 class="title">Shopping List (<%= @ingredients.where(:stored => false).length %>)</h1>
 	</div>
 </div>
-<div class="row section">
+<div class="row section section-first">
 	<div class="col-12 offset-0 col-md-10 offset-md-1 text-center">
 		<button type="button" id="grocery-add-btn" class="btn btn-primary d-block mx-auto" data-toggle="modal" data-target="#grocery-add">Add to List</button>
 		<% if @ingredients.size > 0 %>
@@ -18,8 +18,8 @@
 		<button id="grocery-search-btn" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 	</div>
 </div>
-<div class="row">
-	<div class="col-12">
+<div class="row section">
+	<div class="col-12 p-0">
 		<div class="row">
 			<% if @ingredients.size == 0 %>
 	  	<div class="col-12 col-md-10 offset-md-1">

@@ -1,9 +1,9 @@
 <div class="row section">
-	<div class="col-12">
+	<div class="col-12 title">
 		<h1 class="title">Storage (<%=@ingredients.length%>)</h1>
 	</div>
 </div>
-<div class="row section">
+<div class="row section section-first">
 	<div class="col-12 offset-0 col-md-10 offset-md-1 text-center">
 		<button type="button" id="storage-add-btn" class="btn btn-primary" data-toggle="modal" data-target="#storage-add">Add to Storage</button>
 	</div>
@@ -14,8 +14,8 @@
 		<button id="storage-search-btn" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 	</div>
 </div>
-<div class="row">
-	<div class="col-12">
+<div class="row section">
+	<div class="col-12 p-0">
 		<div class="row">
 			<% if @ingredients.size == 0 %>
 	  	<div class="col-12 col-md-10 offset-md-1">

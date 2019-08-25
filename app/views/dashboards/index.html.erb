@@ -15,13 +15,13 @@
 	<div class="col-12">
 		<div class="row align-items-center doughnut">
 			<div class="col-6 col-md-4">
-				<p class="text-center consumed">Food Consumed <span class="doughnut-stats"><%= @doughnut[:datasets].first[:data][1] %>%</span></p>
+				<p class="text-center consumed">Food Consumed <span class="doughnut-stats"><%= @doughnut[:datasets].first[:data][1] || 0 %>%</span></p>
 			</div>
 			<div class="col-10 offset-1 col-md-4 order-1 order-md-0 offset-md-0">
 				<%= doughnut_chart @doughnut, @doughnutOpt %>
 			</div>
 			<div class="col-6 col-md-4">
-				<p class="text-center wastage">Food Wasted <span class="doughnut-stats"><%= @doughnut[:datasets].first[:data].first %>%</span></p>
+				<p class="text-center wastage">Food Wasted <span class="doughnut-stats"><%= @doughnut[:datasets].first[:data].first || 0 %>%</span></p>
 			</div>
 		</div>
 	</div>

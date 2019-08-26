@@ -25,7 +25,7 @@ window.onload = function() {
         $('#storage-qty-edit').modal('show');
         $('#storage-qty-edit .modal-body').load("/storage/"+ingredientId+"/editqty", function() {
             let editStorageQuantity = $("#edit-storage-quantity");
-            let editStorageQuantityDisplay = $("#edit-storage-quantity-display span");
+            let editStorageQuantityDisplay = $("#edit-storage-quantity-display span.qty");
             let editStorageBtn = $("#storage-edit-btn");
             let deleteStorageBtn = $("#storage-delete-btn");
             let deleteStorageModal = $("#confirm-storage");

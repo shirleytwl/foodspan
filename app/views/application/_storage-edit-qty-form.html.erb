@@ -31,7 +31,7 @@
 <div class="row section">
 	<div class="col-12">
   	<h3 class="sub-title text-center">Quantity</h3>
-  	<p id="edit-storage-quantity-display"><b><span><%=@ingredient.quantity_left%></span></b>/<%=@ingredient.quantity%> <span class="unit"><%=@ingredient.unit%></span></p>
+  	<p id="edit-storage-quantity-display"><b><span class="qty"><%=@ingredient.quantity_left%></span></b>/<%=@ingredient.quantity%> <span class="unit"><%=@ingredient.unit%></span></p>
   </div>
   <div class="col-12">
     <%= form_with scope: :ingredient, model: @ingredient, url: update_storages_qty_path(@ingredient), local: true do |form| %>

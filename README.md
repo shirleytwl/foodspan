@@ -17,7 +17,7 @@ Most of SG citizens are awared of the food waste problem and willing to address 
 
 [View sources](https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources/food-waste-management)
 
-##Our problem statement: 
+## Our problem statement: 
 Help home-makers/consumers to reduce food wastage and cost by providing a informative platform which helps managing food purchases and storage effectively.
 
 who are the target audience: home-makers
@@ -29,7 +29,7 @@ how to achieve the objective: a informative platform which helps managing food p
 2. Catered to home-makers users experience flow, manages food from wish-list to home-fridge
 3. Visualisations on food data to give information to user the consumption and wastage
 
-##Installation Instructions
+## Installation Instructions
 
 1. Go to Project link: https://github.com/shirleytwl/foodspan and clone the project
 

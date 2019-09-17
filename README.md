@@ -84,44 +84,45 @@ rails server
 
 ## Page explaination
 
-####Dashboard page 
-#####View: Overall food data.
+#### Dashboard 
+
+##### View: Overall food data.
 1. The consumption and wastage percentage with "All Time" as default.
 2. The 6 months average of total food wastage bar chart.
 3. Top 3 expired food in the user storage.
 4. Top 3 food in the user shopping list.
 
-####Shopping List Page
-#####Task: Add new ingredients shopping list.
+#### Shopping List Page
+##### Task: Add new ingredients shopping list.
 1. Click on "Add to List" and open up the "Add Ingredient" window.
 2. Input the name, amount and unit of the ingredient and "Save Ingredient" to the shopping list.
 
-#####Task: Move ingredient to storage.
+##### Task: Move ingredient to storage.
 1. Click the green circle to check the ingredient.
 2. Click "Move to Storage" button.
 
 Alternatively, user can edit using the "Edit Ingredient" and delete with "red rubbish bin" icon. 
 
 #### Storage Page
-#####View: All the current ingredients in the storage.
+##### View: All the current ingredients in the storage.
 
-#####Task: Add new ingredient to storage.
+##### Task: Add new ingredient to storage.
 1. Click on "Add to Storage" and open up the "Add Ingredient" window.
 2. Input all the info of the ingredient and "Save Ingredient" to storage.
 
-#####Task: Update Quantity, remove from storage and edit 
+##### Task: Update Quantity, remove from storage and edit 
 1. Click on the "Update Quantity" to open up the "Update Quantity" window.
 2. Click on the "Update Quantity" to update the remaining quantity after consumed.
 3. Click on "Remove From Storage" to remove.
 4. Click on "Edit Ingredient" to make changes.
 
 #### Food Report Page
-#####View: All past food consumption and wastage based on time span  and most/least wastage.
+##### View: All past food consumption and wastage based on time span  and most/least wastage.
 
-#####Task: Choose the desired time span and the most/least wastage order. 
+##### Task: Choose the desired time span and the most/least wastage order. 
 1. Click the top left drop-down menu to choose the desired time span.
 2. Click the top right drop-down menu to choose the wastage in ascending or descending order.
 3. Click
 
-#####Task: See the individual ingredient wastage to consumed ratio.
+##### Task: See the individual ingredient wastage to consumed ratio.
 1. Click on the "detail" text to navigate to individual report.
